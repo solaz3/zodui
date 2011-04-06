@@ -1,0 +1,13 @@
+this addon is modified from tukui t13 which is supported for ctm 4.0.1 and it is a mod from elvui, all point is playing under cwow 3.3.5.
+
+if you like this addon, please read these before you download
+
+first of all, your should understand some of these code what is at least, as I did not plan to rewrite the config ui, so you should config or rewrite all in these files
+
+please be care with the files lay in zodui/src/filters/, as this addon is modified from ctm 4.0.1, some spellIDs are available in CTM ONLY, I commented these to prevent game crashing. I expect some guys would change these spellIDs to WLK ones, if you got interseted. :)
+
+also, the simplized chinese are not completed translated, so if you got interseting, you know it... see it in zodui/local/cn.lua
+
+if you wanna be a collaborator, email me : )
+
+have fun!
