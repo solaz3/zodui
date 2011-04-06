@@ -1,0 +1,5 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="announce.lua"/>
+  <Script file="selfbuffs.lua"/>
+  <!--<Script file="raidbuffreminder.lua"/>-->
+</Ui>

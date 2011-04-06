@@ -1,0 +1,14 @@
+﻿## Interface: 30300
+## Author: Zod
+## Version: 3.3.5
+## Credits to: Tukz, Caith, Caellian, Shestak, Haste, Tekkub, Alza, Roth, P3lim, Tulla, Hungtar, hankthetank, Ishtara and others...
+## Special Thanks to: My wife Lotus who is coming to have my baby.
+## Title: |cff1784d1zOdui|r
+## Notes: A total UI resolution based on oUF framework
+## SavedVariables: ZuiData
+## SavedVariablesPerCharacter: ZuiDataPerChar
+## X-oUF: zUF
+## RequiredDeps: Blizzard_CombatText
+## OptionalDeps: TinyDPS, Tukui_ConfigUI, Tukui_Config, !ClassColors, Clique, Skada, Recount, Omen, KLE, DBM-Core
+
+include.xml

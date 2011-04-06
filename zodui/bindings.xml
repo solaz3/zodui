@@ -1,0 +1,26 @@
+<Bindings>
+	<Binding name="SAYMESSAGE" header="KEY" runOnUp="true">
+		SetChatTo("s")
+	</Binding>
+	<Binding name="YELLMESSAGE">
+		SetChatTo("yell")
+	</Binding>
+	<Binding name="PARTYMESSAGE">
+			SetChatTo("p")
+	</Binding>
+	<Binding name="GUILDMESSAGE">
+		if (IsInGuild()) then
+			SetChatTo("g")
+		end
+	</Binding>
+	<Binding name="RAIDMESSAGE">
+	    if(UnitInRaid("player") ~= nil) then
+				 SetChatTo("ra")
+			end
+	</Binding>
+	<Binding name="BATTLEGROUND">
+ 	    if(UnitInRaid("player") ~= nil) then
+			   SetChatTo("bg")
+	    end
+	</Binding>
+</Bindings>
