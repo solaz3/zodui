@@ -1,4 +1,4 @@
-local T, C, L, DB = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
+local Z, C, L = unpack(select(2, ...)) -- Import: Z - functions, constants, variables; C - config; L - locales
 
 if not IsAddOnLoaded("Recount") or C["addonskins"].recount == false then return end
 

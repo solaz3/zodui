@@ -1,4 +1,4 @@
-local T, C, L, DB = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
+local Z, C, L = unpack(select(2, ...)) -- Import: Z - functions, constants, variables; C - config; L - locales
 
 if not IsAddOnLoaded("DBM-Core") or C["addonskins"].dbm == false then return end
 
@@ -47,12 +47,12 @@ local function SkinBars(self)
 					tbar:SetStatusBarColor(bar.owner.options.StartColorR, bar.owner.options.StartColorG, bar.owner.options.StartColorB)
 				end
 				
-				if bar.enlarged then frame:SetWidth(T.Scale(bar.owner.options.HugeWidth)) else frame:SetWidth(T.Scale(bar.owner.options.Width)) end
-				if bar.enlarged then tbar:SetWidth(T.Scale(bar.owner.options.HugeWidth)) else tbar:SetWidth(T.Scale(bar.owner.options.Width)) end
+				if bar.enlarged then frame:SetWidth(Z.Scale(bar.owner.options.HugeWidth)) else frame:SetWidth(Z.Scale(bar.owner.options.Width)) end
+				if bar.enlarged then tbar:SetWidth(Z.Scale(bar.owner.options.HugeWidth)) else tbar:SetWidth(Z.Scale(bar.owner.options.Width)) end
 
 				if not frame.styled then
 					frame:SetScale(1)
-					frame.SetScale = T.dummy
+					frame.SetScale = Z.dummy
 					frame:SetHeight(buttonsize)
 					frame:SetTemplate("Default")
 					frame.styled=true
@@ -101,17 +101,17 @@ local function SkinBars(self)
 					name:SetFont(C["media"].font, 12, "OUTLINE")
 					name:SetJustifyH("LEFT")
 					name:SetShadowColor(0, 0, 0, 0)
-					name.SetFont = T.dummy
+					name.SetFont = Z.dummy
 					name.styled=true
 				end
 				
 				if not timer.styled then	
 					timer:ClearAllPoints()
 					timer:Point("RIGHT", frame, "RIGHT", -4, 0)
-					timer:SetFont(C["media"].font, 12, "OUTLINE")
+					timer:SetFont(C["media"].numfont, 12, "OUTLINE")
 					timer:SetJustifyH("RIGHT")
 					timer:SetShadowColor(0, 0, 0, 0)
-					timer.SetFont = T.dummy
+					timer.SetFont = Z.dummy
 					timer.styled=true
 				end
 
@@ -199,7 +199,7 @@ local SkinBoss=function()
 		if not timer.styled then
 			timer:ClearAllPoints()
 			timer:Point("RIGHT", bar, "RIGHT", -4, 0)
-			timer:SetFont(C["media"].font, 12, "OUTLINE")
+			timer:SetFont(C["media"].numfont, 12, "OUTLINE")
 			timer:SetJustifyH("RIGHT")
 			timer:SetShadowColor(0, 0, 0, 0)
 			timer.styled=true

@@ -219,6 +219,10 @@ C["xct"] = {
 
 C["addonskins"] = {
   ["tinydps"] = true,
+  ["dbm"] = false,
+  ["kle"] = false,
+  ["omen"] = false,
+  ["recount"] = false,
 }
 
 C["classtimer"] = {

@@ -1,4 +1,4 @@
-local T, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
+local Z, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 
 -- KLE is loaded by demand. we need to load it to skin it!
@@ -11,8 +11,8 @@ if not IsAddOnLoaded("KLE") or C["addonskins"].kle == false then return end
 local KLE = KLE
 local _G = getfenv(0)
 
-local barSpacing = T.Scale(1, 1)
-local borderWidth = T.Scale(2, 2)
+local barSpacing = Z.Scale(1, 1)
+local borderWidth = Z.Scale(2, 2)
 local buttonZoom = {.09,.91,.09,.91}
 local movers = {
 	"KLEAlertsCenterStackAnchor",
@@ -56,13 +56,13 @@ local function SkinKLEBar(bar)
 end
 
 --Kill KLE's skinning
-KLE.NotifyBarTextureChanged = T.dummy
-KLE.NotifyBorderChanged = T.dummy
-KLE.NotifyBorderColorChanged = T.dummy
-KLE.NotifyBorderEdgeSizeChanged = T.dummy
-KLE.NotifyBackgroundTextureChanged = T.dummy
-KLE.NotifyBackgroundInsetChanged = T.dummy
-KLE.NotifyBackgroundColorChanged = T.dummy
+KLE.NotifyBarTextureChanged = Z.dummy
+KLE.NotifyBorderChanged = Z.dummy
+KLE.NotifyBorderColorChanged = Z.dummy
+KLE.NotifyBorderEdgeSizeChanged = Z.dummy
+KLE.NotifyBackgroundTextureChanged = Z.dummy
+KLE.NotifyBackgroundInsetChanged = Z.dummy
+KLE.NotifyBackgroundColorChanged = Z.dummy
 
 --Hook Window Creation
 KLE.CreateWindow_ = KLE.CreateWindow
@@ -101,8 +101,8 @@ KLE.Alerts.RefreshBars = function(self)
 		local bar = _G["KLEAlertBar"..i]
 		bar:SetScale(1)
 		bar:SetAlpha(1)
-		bar.SetAlpha = T.dummy
-		bar.SetScale = T.dummy
+		bar.SetAlpha = Z.dummy
+		bar.SetScale = Z.dummy
 		SkinKLEBar(bar)
 		i = i + 1
 	end
@@ -135,8 +135,8 @@ KLE.Pane.border:Kill()
 --Force some default profile options
 if not KLEDB then KLEDB = {} end
 if not KLEDB["profiles"] then KLEDB["profiles"] = {} end
-if not KLEDB["profiles"][T.myname.." - "..GetRealmName()] then KLEDB["profiles"][T.myname.." - "..T.myrealm] = {} end
-if not KLEDB["profiles"][T.myname.." - "..GetRealmName()]["Globals"] then KLEDB["profiles"][E.myname.." - "..E.myrealm]["Globals"] = {} end
+if not KLEDB["profiles"][Z.myname.." - "..GetRealmName()] then KLEDB["profiles"][Z.myname.." - "..Z.myrealm] = {} end
+if not KLEDB["profiles"][Z.myname.." - "..GetRealmName()]["Globals"] then KLEDB["profiles"][Z.myname.." - "..Z.myrealm]["Globals"] = {} end
 
 --Hook bar to chatframe, rest of this is handled inside chat.lua and chatanimation.lua
 local KLE_Skin = CreateFrame("Frame")
@@ -147,8 +147,8 @@ KLE_Skin:SetScript("OnEvent", function(self, event)
 		self = nil
 		
 		--KLE doesn't like the pane timer font to listen for some reason
-		KLE.Pane.timer.left:SetFont(C["media"].font, 18)
-		KLE.Pane.timer.right:SetFont(C["media"].font, 12)
+		KLE.Pane.timer.left:SetFont(C["media"].numfont, 18)
+		KLE.Pane.timer.right:SetFont(C["media"].numfont, 12)
 		
 		for i=1, #movers do
 			_G[movers[i]]:SetTemplate("Transparent")

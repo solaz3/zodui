@@ -9,6 +9,6 @@
 ## SavedVariablesPerCharacter: ZuiDataPerChar
 ## X-oUF: zUF
 ## RequiredDeps: Blizzard_CombatText
-## OptionalDeps: TinyDPS, Tukui_ConfigUI, Tukui_Config, !ClassColors, Clique, Skada, Recount, Omen, KLE, DBM-Core
+## OptionalDeps: TinyDPS, !ClassColors, Clique, Skada, Recount, Omen, KLE, DBM-Core
 
 include.xml
