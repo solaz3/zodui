@@ -162,7 +162,13 @@ TukuiBar4Button.text:SetText("|cff4BAF4C- - - - - -|r")]]
 local TukuiBar3Button = CreateFrame("Button", "TukuiBar3Button", ZuiCubeRight)
 TukuiBar3Button:SetAllPoints(ZuiCubeRight)
 TukuiBar3Button:RegisterForClicks("AnyUp")
-TukuiBar3Button:SetScript("OnClick", function(self) DrPepper(self, TukuiBar2) end)
+TukuiBar3Button:SetScript("OnClick", function(self, btn) 
+  if btn=="LeftButton" then
+    DrPepper(self, TukuiBar2) 
+  elseif btn =="RightButton" then
+    ToggleKeyRing()
+  end
+end)
 
 local TukuiBar4ButtonTop = CreateFrame("Button", "TukuiBar4ButtonTop", UIParent)
 TukuiBar4ButtonTop:SetWidth(TukuiBar4:GetWidth())
@@ -245,7 +251,7 @@ init:SetScript("OnEvent", function(self, event)
 	local db = ZuiDataPerChar
 	
 	if db.hidebar3 then 
-		DrPepper(TukuiBar2Button, TukuiBar2)
+		DrPepper(TukuiBar3Button, TukuiBar2)
 	end
   
   if db.hidebar5 then

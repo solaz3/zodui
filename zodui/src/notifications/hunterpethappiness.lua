@@ -1,5 +1,5 @@
-local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
-if T.myclass ~= "HUNTER" then return end
+local Z, C, L = unpack(select(2, ...)) -- Import: Z - functions, constants, variables; C - config; L - locales
+if Z.myclass ~= "HUNTER" then return end
  
 local PetHappiness = CreateFrame("Frame")
 PetHappiness.happiness = GetPetHappiness()
