@@ -203,8 +203,8 @@ local function Shared(self, unit)
 		--if C["unitframes"].debuffhighlight == true then
 			local dbh = self:CreateTexture(nil, "OVERLAY")
 			if POWERTHEME == true then
-				dbh:SetPoint("TOPLEFT")
-				dbh:SetPoint("BOTTOMRIGHT", health.backdrop, "BOTTOMRIGHT")
+				dbh:SetPoint("TOPRIGHT")
+				dbh:SetPoint("BOTTOMLEFT", health.backdrop, "BOTTOMLEFT")
 			else
 				dbh:SetAllPoints()
 			end
