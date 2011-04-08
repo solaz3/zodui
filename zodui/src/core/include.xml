@@ -1,8 +1,0 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Script file="uiscale.lua"/>
-  <Script file="api.lua"/>
-	<Script file="functions.lua"/>
-	<Script file="launch.lua"/>
-	<Script file="clientfonts.lua"/>
-  <Script file="colors.lua"/>
-</Ui>
