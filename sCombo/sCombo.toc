@@ -1,0 +1,9 @@
+## Interface: 30300
+## Author: Smelly
+## Version: 1.3
+## Title: |cffC495DDs|rCombo
+## Notes: Minimal Combo Bar Replacement.
+## RequiredDeps: zodui
+
+sCombo.lua
+
