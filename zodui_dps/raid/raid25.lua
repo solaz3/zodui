@@ -80,7 +80,7 @@ local function Shared(self, unit)
 		else
 			LFDRole:Point("TOP", self.Name, "BOTTOM", 0, -1)
 		end
-		LFDRole:SetTexture("Interface\\AddOns\\zodui\\resource\\textures\\lfdicons.blp")
+		LFDRole:SetTexture("Interface\\AddOns\\zodui\\res\\textures\\lfdicons.blp")
 		self.LFDRole = LFDRole
 	end
 	
@@ -100,7 +100,7 @@ local function Shared(self, unit)
 	else
 		RaidIcon:SetPoint('CENTER', self, 'TOP')
 	end
-	RaidIcon:SetTexture('Interface\\AddOns\\zodui\\resource\\textures\\raidicons.blp')
+	RaidIcon:SetTexture('Interface\\AddOns\\zodui\\res\\textures\\raidicons.blp')
 	self.RaidIcon = RaidIcon
 	
 	local ReadyCheck = self.Health:CreateTexture(nil, "OVERLAY")
