@@ -528,7 +528,7 @@ local function Shared(self, unit)
 				for i = 1, 4 do
 					totems[i] = CreateFrame("StatusBar", nil, totems)
 					totems[i]:SetHeight(totems:GetHeight())
-					totems[i]:SetWidth(E.Scale(totems:GetWidth() - 3) / 4)
+					totems[i]:SetWidth(Z.Scale(totems:GetWidth() - 3) / 4)
 
 					if (i == 1) then
 						totems[i]:SetPoint("LEFT", totems)
@@ -636,8 +636,8 @@ local function Shared(self, unit)
 				
 				self.EclipseBar = eclipseBar
 				self.EclipseBar.PostUpdatePower = E.EclipseDirection
-			end
-		end]]
+			end]]
+		end
 		
 		--Druid Mana
 		if Z.myclass == "DRUID" then
@@ -689,7 +689,6 @@ local function Shared(self, unit)
 				end
 			}
 		end		]]	
-	end
 end	
 	------------------------------------------------------------------------
 	-- Target
@@ -1016,8 +1015,8 @@ end
 			
 			--Autohide in combat
 			if C["unitframes"].combat == true then
-				self:HookScript("OnEnter", function(self) E.Fader(self, true) end)
-				self:HookScript("OnLeave", function(self) E.Fader(self, false) end)
+				self:HookScript("OnEnter", function(self) Z.Fader(self, true) end)
+				self:HookScript("OnLeave", function(self) Z.Fader(self, false) end)
 			end
 		elseif unit == "focus"	then
 			--Cast Bar
@@ -1207,7 +1206,7 @@ end
 	------------------------------------------------------------------------
 	if unit ~= "party" then
 		local RaidIcon = self:CreateTexture(nil, "OVERLAY")
-		RaidIcon:SetTexture("Interface\\AddOns\\zodui\\resource\\textures\\raidicons.blp") 
+		RaidIcon:SetTexture("Interface\\AddOns\\zodui\\res\\textures\\raidicons.blp") 
 		RaidIcon:Size(18, 18)
 		RaidIcon:Point("CENTER", self.Health, "TOP", 0, BORDER)
 		self.RaidIcon = RaidIcon

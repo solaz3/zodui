@@ -223,10 +223,17 @@ oUF:Factory(function(self)
 	oUF:SetActiveStyle("ZuiDPSR6R25")	
 	local raid
 	if C["raidframes"].griddps ~= true then
-		raid = self:SpawnHeader("ZuiDPSR6R25", nil, nil,	
+		raid = self:SpawnHeader("ZuiDPSR6R25", nil, "custom [@raid6,noexists][@raid26,exists] hide;show",
+			'oUF-initialConfigFunction', [[
+				local header = self:GetParent()
+				self:SetWidth(header:GetAttribute('initial-width'))
+				self:SetHeight(header:GetAttribute('initial-height'))
+			]],
+			'initial-width', RAID_WIDTH,
+			'initial-height', RAID_HEIGHT,		
 			"showRaid", true, 
 			"showParty", true,
-			--"showSolo", false,
+			"showSolo", false,
 			"point", "BOTTOM",
 			"showPlayer", C["raidframes"].showplayerinparty,
 			"groupFilter", "1,2,3,4,5",
@@ -236,7 +243,14 @@ oUF:Factory(function(self)
 		)	
 		raid:Point("BOTTOMLEFT", ZuiChatBackgroundLeft, "TOPLEFT", 1, 40)
 	else
-		raid = self:SpawnHeader("ZuiDPSR6R25", nil,nil,	
+		raid = self:SpawnHeader("ZuiDPSR6R25", nil,"custom [@raid6,noexists][@raid26,exists] hide;show",
+			'oUF-initialConfigFunction', [[
+				local header = self:GetParent()
+				self:SetWidth(header:GetAttribute('initial-width'))
+				self:SetHeight(header:GetAttribute('initial-height'))
+			]],
+			'initial-width', RAID_WIDTH,
+			'initial-height', RAID_HEIGHT,		
 			"showRaid", true, 
 			"showParty", true,
 			"showPlayer", C["raidframes"].showplayerinparty,

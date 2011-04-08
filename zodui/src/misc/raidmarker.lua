@@ -77,7 +77,7 @@ for i = 1, 8 do
 	Button:SetSize(40, 40)
 	Button:SetID(i)
 	Button.Texture = Button:CreateTexture(Button:GetName().."NormalTexture", "ARTWORK");
-	Button.Texture:SetTexture("Interface\\AddOns\\zodui\\resource\\textures\\raidicons.blp")
+	Button.Texture:SetTexture("Interface\\AddOns\\zodui\\res\\textures\\raidicons.blp")
 	Button.Texture:SetAllPoints()
 	SetRaidTargetIconTexture(Button.Texture, i)
 	Button:RegisterForClicks("LeftButtonUp","RightButtonUp")

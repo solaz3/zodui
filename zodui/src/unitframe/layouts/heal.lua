@@ -1,42 +1,40 @@
-local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
-
-if not C["unitframes"].enable == true then return end
-
+local Z, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 ------------------------------------------------------------------------
 --	Constants
 ------------------------------------------------------------------------
 
-local PLAYER_WIDTH = C["unitframes"].playtarwidth*E.ResScale
-local PLAYER_HEIGHT = C["unitframes"].playtarheight*E.ResScale
-local TARGET_WIDTH = C["unitframes"].playtarwidth*E.ResScale
-local TARGET_HEIGHT = C["unitframes"].playtarheight*E.ResScale
-local SMALL_WIDTH = C["unitframes"].smallwidth*E.ResScale
-local SMALL_HEIGHT = C["unitframes"].smallheight*E.ResScale
-local TANK_WIDTH = C["unitframes"].assisttankwidth*E.ResScale
-local TANK_HEIGHT = C["unitframes"].assisttankheight*E.ResScale
-local BOSS_WIDTH = C["unitframes"].arenabosswidth*E.ResScale
-local BOSS_HEIGHT = C["unitframes"].arenabossheight*E.ResScale
-local BORDER = 2*E.ResScale
-local SPACING = 1*E.ResScale
-local FONTSIZE = C["unitframes"].fontsize*E.ResScale
+local PLAYER_WIDTH = C["unitframes"].playtarwidth*Z.raidscale
+local PLAYER_HEIGHT = C["unitframes"].playtarheight*Z.raidscale
+local TARGET_WIDTH = C["unitframes"].playtarwidth*Z.raidscale
+local TARGET_HEIGHT = C["unitframes"].playtarheight*Z.raidscale
+local SMALL_WIDTH = C["unitframes"].smallwidth*Z.raidscale - 10
+local SMALL_HEIGHT = C["unitframes"].smallheight*Z.raidscale
+local TANK_WIDTH = C["unitframes"].assisttankwidth*Z.raidscale
+local TANK_HEIGHT = C["unitframes"].assisttankheight*Z.raidscale
+local BOSS_WIDTH = C["unitframes"].arenabosswidth*Z.raidscale
+local BOSS_HEIGHT = C["unitframes"].arenabossheight*Z.raidscale
+local BORDER = 2*Z.raidscale
+local SPACING = 1*Z.raidscale
+local FONTSIZE = C["unitframes"].fontsize*Z.raidscale
 local FONT = C["media"].uffont
+local NUMFONT = C["media"].numfont
 local NORMTEX = C["media"].normTex
 local POWERTHEME = C["unitframes"].mini_powerbar
 
 --[[
 	Constuctor Functions (inside uf_functions.lua)
 	
-	E.ContructHealthBar(arg1, arg2, arg3):
+	Z.ContructHealthBar(arg1, arg2, arg3):
 		arg1 - first argument should always be self
 		arg2 - [true/false] OPTIONAL create a backdrop
 		arg3 - [true/false] OPTIONAL create health value text
 		
-	E.ContructPowerBar(arg1, arg2, arg3):
+	Z.ContructPowerBar(arg1, arg2, arg3):
 		arg1 - first argument should always be self
 		arg2 - [true/false] OPTIONAL create a backdrop 
 		arg3 - [true/false] OPTIONAL create power value text
 
-	E.ConstructCastBar(arg1, arg2, arg3, arg4):
+	Z.ConstructCastBar(arg1, arg2, arg3, arg4):
 		arg1 - first argument should always be self
 		arg2 - width of entire bar, cast icon is calculated in already
 		arg3 - height of entire bar
@@ -46,7 +44,7 @@ local POWERTHEME = C["unitframes"].mini_powerbar
 	Note: These functions do not make the element active, you have to do that manually.
 	
 	Example:
-		local health = E.ContructHealthBar(self, true, true)
+		local health = Z.ContructHealthBar(self, true, true)
 		health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
 		
 		self.Health = health
@@ -57,7 +55,7 @@ local POWERTHEME = C["unitframes"].mini_powerbar
 ------------------------------------------------------------------------
 local function Shared(self, unit)
 	-- Set Colors
-	self.colors = E.oUF_colors
+	self.colors = Z.oUF_colors
 	
 	-- Register Frames for Click
 	self:RegisterForClicks("AnyUp")
@@ -65,8 +63,9 @@ local function Shared(self, unit)
 	self:SetScript('OnLeave', UnitFrame_OnLeave)
 	
 	-- Setup Menu
-	self.menu = E.SpawnMenu
-	
+	self.menu = Z.SpawnMenu
+	self:SetAttribute("type2", "menu") 
+  
 	-- Frame Level
 	self:SetFrameLevel(5)
 	
@@ -74,14 +73,14 @@ local function Shared(self, unit)
 	--	Player
 	------------------------------------------------------------------------
 	if unit == "player" then
-		local POWERBAR_WIDTH = C["unitframes"].playtarwidth/2*E.ResScale
-		local CLASSBAR_WIDTH = (C["unitframes"].playtarwidth - (2*2))*E.ResScale
-		local CLASSBAR2_WIDTH = (C["unitframes"].playtarwidth/1.7)*E.ResScale
-		local POWERBAR_HEIGHT = 10*E.ResScale
-		local CLASSBAR_HEIGHT = 11*E.ResScale
-		local CASTBAR_HEIGHT = 20*E.ResScale
-		local CASTBAR_WIDTH = C["unitframes"].castplayerwidth*E.ResScale
-		local PORTRAIT_WIDTH = 45*E.ResScale
+		local POWERBAR_WIDTH = C["unitframes"].playtarwidth/2*Z.raidscale
+		local CLASSBAR_WIDTH = (C["unitframes"].playtarwidth - (2*2))*Z.raidscale
+		local CLASSBAR2_WIDTH = (C["unitframes"].playtarwidth/1.7)*Z.raidscale
+		local POWERBAR_HEIGHT = 10*Z.raidscale
+		local CLASSBAR_HEIGHT = 11*Z.raidscale
+		local CASTBAR_HEIGHT = 20*Z.raidscale
+		local CASTBAR_WIDTH = C["unitframes"].castplayerwidth*Z.raidscale
+		local PORTRAIT_WIDTH = 45*Z.raidscale
 		
 		--Threat Glow
 		self:CreateShadow("Default")
@@ -99,7 +98,7 @@ local function Shared(self, unit)
 		end
 	
 		--Health Bar
-		local health = E.ContructHealthBar(self, true, true)
+		local health = Z.ContructHealthBar(self, true, true)
 		health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
 		if POWERTHEME == true then
 			health:Point("BOTTOMLEFT", self, "BOTTOMLEFT", BORDER, BORDER + (POWERBAR_HEIGHT/2))
@@ -111,7 +110,7 @@ local function Shared(self, unit)
 		self.Health = health
 		
 		--Power Bar
-		local power = E.ConstructPowerBar(self, true, true)
+		local power = Z.ConstructPowerBar(self, true, true)
 		if POWERTHEME == true then
 			power:Width(POWERBAR_WIDTH - BORDER*2)
 			power:Height(POWERBAR_HEIGHT - BORDER*2)
@@ -150,13 +149,13 @@ local function Shared(self, unit)
 			self.shadow:Point("BOTTOMRIGHT", health, "BOTTOMRIGHT", 4, -6)
 		end				
 				
-		--Auras
+		--[[Auras
 		if C["unitframes"].playerauras then
 			local debuffs = CreateFrame("Frame", nil, self)
 			debuffs.num = C["unitframes"].playtarbuffperrow
 			debuffs:SetWidth(PLAYER_WIDTH)
 			debuffs.spacing = E.Scale(SPACING)
-			debuffs.size = ((C["unitframes"].playtarwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)*E.ResScale
+			debuffs.size = ((C["unitframes"].playtarwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)*Z.raidscale
 			debuffs:SetHeight(debuffs.size)
 			debuffs:Point("BOTTOMLEFT", self, "TOPLEFT", 0, SPACING)	
 			debuffs.initialAnchor = 'BOTTOMRIGHT'
@@ -172,7 +171,7 @@ local function Shared(self, unit)
 				buffs.num = C["unitframes"].playtarbuffperrow
 				buffs:SetWidth(debuffs:GetWidth())
 				buffs.spacing = E.Scale(SPACING)
-				buffs.size = (((C["unitframes"].playtarwidth - (buffs.spacing*(buffs.num - 1))) / buffs.num))*E.ResScale
+				buffs.size = (((C["unitframes"].playtarwidth - (buffs.spacing*(buffs.num - 1))) / buffs.num))*Z.raidscale
 				buffs:Point("BOTTOM", debuffs, "TOP", 0, SPACING)
 				buffs:SetHeight(debuffs:GetHeight())
 				buffs.initialAnchor = 'BOTTOMLEFT'
@@ -182,18 +181,18 @@ local function Shared(self, unit)
 				buffs.PostUpdateIcon = E.PostUpdateAura
 				self.Buffs = buffs	
 			end
-		end
+		end]]
 
 		--Cast Bar
-		if C["unitframes"].unitcastbar == true then
-			local castbar = E.ConstructCastBar(self, CASTBAR_WIDTH, CASTBAR_HEIGHT, "LEFT")
+		--if C["unitframes"].unitcastbar == true then
+			local castbar = Z.ConstructCastBar(self, CASTBAR_WIDTH, CASTBAR_HEIGHT, "LEFT")
 			castbar:Point("TOPRIGHT", self, "BOTTOMRIGHT", -BORDER, -(BORDER*2+BORDER))
 			
 			self.Castbar = castbar
-		end
+		--end
 		
 		-- Debuff Highlight
-		if C["unitframes"].debuffhighlight == true then
+		--if C["unitframes"].debuffhighlight == true then
 			local dbh = self:CreateTexture(nil, "OVERLAY")
 			if POWERTHEME == true then
 				dbh:SetPoint("TOPLEFT")
@@ -207,11 +206,11 @@ local function Shared(self, unit)
 			self.DebuffHighlight = dbh
 			self.DebuffHighlightFilter = true
 			self.DebuffHighlightAlpha = 0.35
-		end
+		--end
 
 		--Combat Feedback
-		if C["unitframes"].combatfeedback == true then
-			self:FontString("CombatFeedbackText", FONT, FONTSIZE, "OUTLINE")
+		--if C["unitframes"].combatfeedback == true then
+			self:FontString("CombatFeedbackText", NUMFONT, FONTSIZE, "OUTLINE")
 			self.CombatFeedbackText:SetPoint("CENTER", health, "CENTER", 0, -5)
 			
 			self.CombatFeedbackText.colors = {
@@ -230,23 +229,23 @@ local function Shared(self, unit)
 				ENERGIZE = {0.31, 0.45, 0.63},
 				CRITENERGIZE = {0.31, 0.45, 0.63},
 			}
-		end
+		--end
 		
 		--Low Mana
 		self:FontString("ManaLevel", FONT, FONTSIZE, "THINOUTLINE")
 		self.ManaLevel:Point("CENTER", health, "CENTER", 0, -5)
-		self:HookScript("OnUpdate", E.UpdateManaLevel)
+		self:HookScript("OnUpdate", Z.UpdateManaLevel)
 		
-		--PvP Text
+		--[[PvP Text
 		self:FontString("PvP", FONT, FONTSIZE, "THINOUTLINE")
 		self.PvP:Point("CENTER", health, "CENTER", 0, -5)
 		self.PvP:SetTextColor(0.69, 0.31, 0.31)
 		self.PvP:Hide()
-		self.PvP.Override = E.dummy		
+		self.PvP.Override = Z.dummy		
 		
 		self:HookScript("OnUpdate", E.PvPUpdate)
 		self:HookScript("OnEnter", function(self) self.ManaLevel:Hide() self.PvP:Show() end)
-		self:HookScript("OnLeave", function(self) self.ManaLevel:Show() self.PvP:Hide() end)
+		self:HookScript("OnLeave", function(self) self.ManaLevel:Show() self.PvP:Hide() end)]]
 		
 		--Combat Icon
 		local combat = self:CreateTexture(nil, "OVERLAY")
@@ -265,49 +264,49 @@ local function Shared(self, unit)
 		local ml = self:CreateTexture(nil, "OVERLAY")
 		ml:Size(14)
 		self.MasterLooter = ml
-		self:RegisterEvent("PARTY_LEADER_CHANGED", E.MLAnchorUpdate)
-		self:RegisterEvent("PARTY_MEMBERS_CHANGED", E.MLAnchorUpdate)	
+		self:RegisterEvent("PARTY_LEADER_CHANGED", Z.MLAnchorUpdate)
+		self:RegisterEvent("PARTY_MEMBERS_CHANGED", Z.MLAnchorUpdate)	
 			
 		--Aggro Glow
 		if C["unitframes"].displayaggro == true then
-			table.insert(self.__elements, E.UpdateThreat)
-			self:RegisterEvent('PLAYER_TARGET_CHANGED', E.UpdateThreat)
-			self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', E.UpdateThreat)
-			self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', E.UpdateThreat)
+			table.insert(self.__elements, Z.UpdateThreat)
+			self:RegisterEvent('PLAYER_TARGET_CHANGED', Z.UpdateThreat)
+			self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', Z.UpdateThreat)
+			self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', Z.UpdateThreat)
 		end
 		
 		--Auto Hide
 		if C["unitframes"].combat == true then
-			self:RegisterEvent("PLAYER_ENTERING_WORLD", E.Fader)
-			self:RegisterEvent("PLAYER_REGEN_ENABLED", E.Fader)
-			self:RegisterEvent("PLAYER_REGEN_DISABLED", E.Fader)
-			self:RegisterEvent("PLAYER_TARGET_CHANGED", E.Fader)
-			self:RegisterEvent("PLAYER_FOCUS_CHANGED", E.Fader)
-			self:RegisterEvent("UNIT_HEALTH", E.Fader)
-			self:RegisterEvent("UNIT_SPELLCAST_START", E.Fader)
-			self:RegisterEvent("UNIT_SPELLCAST_STOP", E.Fader)
-			self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START", E.Fader)
-			self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP", E.Fader)
-			self:RegisterEvent("UNIT_PORTRAIT_UPDATE", E.Fader)
-			self:RegisterEvent("UNIT_MODEL_CHANGED", E.Fader)			
-			self:HookScript("OnEnter", function(self) E.Fader(self, true) end)
-			self:HookScript("OnLeave", function(self) E.Fader(self, false) end)
+			self:RegisterEvent("PLAYER_ENTERING_WORLD", Z.Fader)
+			self:RegisterEvent("PLAYER_REGEN_ENABLED", Z.Fader)
+			self:RegisterEvent("PLAYER_REGEN_DISABLED", Z.Fader)
+			self:RegisterEvent("PLAYER_TARGET_CHANGED", Z.Fader)
+			self:RegisterEvent("PLAYER_FOCUS_CHANGED", Z.Fader)
+			self:RegisterEvent("UNIT_HEALTH", Z.Fader)
+			self:RegisterEvent("UNIT_SPELLCAST_START", Z.Fader)
+			self:RegisterEvent("UNIT_SPELLCAST_STOP", Z.Fader)
+			self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START", Z.Fader)
+			self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP", Z.Fader)
+			self:RegisterEvent("UNIT_PORTRAIT_UPDATE", Z.Fader)
+			self:RegisterEvent("UNIT_MODEL_CHANGED", Z.Fader)			
+			self:HookScript("OnEnter", function(self) Z.Fader(self, true) end)
+			self:HookScript("OnLeave", function(self) Z.Fader(self, false) end)
 		end		
 		
 		--Experience Bar
-		if E.level ~= MAX_PLAYER_LEVEL then
+		if Z.level ~= MAX_PLAYER_LEVEL then
 			local experience = CreateFrame("StatusBar", nil, self)
 			experience:SetStatusBarTexture(NORMTEX)
 			experience:SetStatusBarColor(0, 0.4, 1, .8)
-			experience:Size(PLAYER_WIDTH -(BORDER*2), POWERBAR_HEIGHT -(BORDER*2))
-			experience:Point("TOPRIGHT", self, "BOTTOMRIGHT", -BORDER, -(BORDER*2+BORDER))
+			experience:Size(ZuiMinimap:GetWidth()-(BORDER*2), POWERBAR_HEIGHT -(BORDER*2))
+			experience:Point("TOP", ZuiMinimap, "BOTTOM", 0, -BORDER*2)
 			experience:SetFrameStrata("LOW")
 			
 			experience.Rested = CreateFrame('StatusBar', nil, experience)
 			experience.Rested:SetStatusBarTexture(NORMTEX)
 			experience.Rested:SetStatusBarColor(1, 0, 1, 0.2)
 			experience.Rested:SetFrameLevel(experience:GetFrameLevel() - 1)
-			experience.Rested.SetFrameLevel = E.dummy --oUF_Experience thinks its a good idea to set frame level to 1
+			experience.Rested.SetFrameLevel = Z.dummy --oUF_Experience thinks its a good idea to set frame level to 1
 			experience.Rested:SetAllPoints(experience)
 			
 			local resting = self:CreateTexture(nil, "OVERLAY")
@@ -316,7 +315,7 @@ local function Shared(self, unit)
 			resting:SetTexture([=[Interface\CharacterFrame\UI-StateIcon]=])
 			resting:SetTexCoord(0, 0.5, 0, 0.421875)
 			resting:Hide()
-			self:RegisterEvent("PLAYER_UPDATE_RESTING", E.RestingIconUpdate)
+			self:RegisterEvent("PLAYER_UPDATE_RESTING", Z.RestingIconUpdate)
 			self.Resting = resting
 			
 			experience.backdrop = CreateFrame("Frame", nil, experience)
@@ -327,12 +326,12 @@ local function Shared(self, unit)
 			self.Experience = experience
 		end
 		
-		if E.level == MAX_PLAYER_LEVEL then
+		if Z.level == MAX_PLAYER_LEVEL then
 			local reputation = CreateFrame("StatusBar", nil, self)
 			reputation:SetStatusBarTexture(NORMTEX)
 			reputation:SetStatusBarColor(0, 0.4, 1, .8)
-			reputation:Size(PLAYER_WIDTH -(BORDER*2), POWERBAR_HEIGHT -(BORDER*2))
-			reputation:Point("TOPRIGHT", self, "BOTTOMRIGHT", -BORDER, -(BORDER*2+BORDER))
+			reputation:Size(ZuiMinimap:GetWidth()-(BORDER*2), POWERBAR_HEIGHT -(BORDER*2))
+			reputation:Point("TOP", ZuiMinimap, "BOTTOM", 0, -BORDER*2)
 			reputation:SetFrameStrata("LOW")
 
 			reputation.Tooltip = true
@@ -347,7 +346,7 @@ local function Shared(self, unit)
 		end
 
 		--Class Resource Bars
-		if C["unitframes"].classbar == true and (E.myclass == "PALADIN" or E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "DEATHKNIGHT" or E.myclass == "WARLOCK") then
+		if C["unitframes"].classbar == true and (Z.myclass == "PALADIN" or Z.myclass == "SHAMAN" or Z.myclass == "DRUID" or Z.myclass == "DEATHKNIGHT" or Z.myclass == "WARLOCK") then
 			--Reposition Health Bar for ClassBars
 			if POWERTHEME == true then
 				health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
@@ -357,8 +356,8 @@ local function Shared(self, unit)
 				health:Point("TOPLEFT", self, "TOPLEFT", PORTRAIT_WIDTH+BORDER, -(BORDER+POWERBAR_HEIGHT+SPACING))
 			end
 			
-			--Soul Shard / Holy Power Bar
-			if E.myclass == "PALADIN" or E.myclass == "WARLOCK" then
+			--[[Soul Shard / Holy Power Bar
+			if Z.myclass == "PALADIN" or Z.myclass == "WARLOCK" then
 				local bars = CreateFrame("Frame", nil, self)
 				if POWERTHEME == true then
 					bars:Width(CLASSBAR2_WIDTH - BORDER*2)
@@ -436,10 +435,10 @@ local function Shared(self, unit)
 					bars.Override = E.UpdateShards
 					self.SoulShards = bars
 				end	
-			end
+			end]]
 			
 			--Rune Bar
-			if E.myclass == "DEATHKNIGHT" then
+			if Z.myclass == "DEATHKNIGHT" then
 				local runes = CreateFrame("Frame", nil, self)
 				if POWERTHEME == true then
 					runes:Width(CLASSBAR2_WIDTH - BORDER*2)
@@ -457,7 +456,7 @@ local function Shared(self, unit)
 				for i = 1, 6 do
 					runes[i] = CreateFrame("StatusBar", nil, runes)
 					runes[i]:Height(runes:GetHeight())
-					runes[i]:SetWidth(E.Scale(runes:GetWidth() - 5) / 6)
+					runes[i]:SetWidth(Z.Scale(runes:GetWidth() - 5) / 6)
 
 					if (i == 1) then
 						runes[i]:SetPoint("LEFT", runes)
@@ -498,7 +497,7 @@ local function Shared(self, unit)
 			end
 			
 			--Totem Bar
-			if E.myclass == "SHAMAN" then
+			if Z.myclass == "SHAMAN" then
 				local totems = CreateFrame("Frame", nil, self)
 				if POWERTHEME == true then
 					totems:Width(CLASSBAR2_WIDTH - BORDER*2)
@@ -517,7 +516,7 @@ local function Shared(self, unit)
 				for i = 1, 4 do
 					totems[i] = CreateFrame("StatusBar", nil, totems)
 					totems[i]:SetHeight(totems:GetHeight())
-					totems[i]:SetWidth(E.Scale(totems:GetWidth() - 3) / 4)
+					totems[i]:SetWidth(Z.Scale(totems:GetWidth() - 3) / 4)
 
 					if (i == 1) then
 						totems[i]:SetPoint("LEFT", totems)
@@ -563,7 +562,7 @@ local function Shared(self, unit)
 				self.TotemBar = totems			
 			end
 			
-			--Eclipse Bar
+			--[[Eclipse Bar
 			if E.myclass == "DRUID" then
 				local eclipseBar = CreateFrame('Frame', nil, self)
 				if POWERTHEME == true then
@@ -625,17 +624,17 @@ local function Shared(self, unit)
 				
 				self.EclipseBar = eclipseBar
 				self.EclipseBar.PostUpdatePower = E.EclipseDirection
-			end
+			end]]
 		end
 		
 		--Druid Mana
-		if E.myclass == "DRUID" then
+		if Z.myclass == "DRUID" then
 			self:FontString("DruidMana", FONT, FONTSIZE, "THINOUTLINE")
 			self.DruidMana:SetTextColor(1, 0.49, 0.04)	
-			self:HookScript("OnUpdate", E.UpdateDruidMana)
+			self:HookScript("OnUpdate", Z.UpdateDruidMana)
 		end
 		
-		--Alternative Power Bar
+		--[[Alternative Power Bar
 		local altpower = CreateFrame("StatusBar", nil, health)
 		altpower:SetStatusBarTexture(NORMTEX)
 		altpower:GetStatusBarTexture():SetHorizTile(false)
@@ -650,7 +649,7 @@ local function Shared(self, unit)
 		altpower:FontString("text", FONT, FONTSIZE, "THINOUTLINE")
 		altpower.text:SetPoint("CENTER")
 		altpower.text:SetJustifyH("CENTER")		
-		self.AltPowerBar = altpower
+		self.AltPowerBar = altpower]]
 		
 		--Incoming Heals
 		if C["raidframes"].healcomm == true then
@@ -684,21 +683,21 @@ local function Shared(self, unit)
 	-- Target
 	------------------------------------------------------------------------
 	if unit == "target" then
-		local POWERBAR_WIDTH = C["unitframes"].playtarwidth/2*E.ResScale
-		local CLASSBAR_WIDTH = (C["unitframes"].playtarwidth - (2*2))*E.ResScale
-		local POWERBAR_HEIGHT = 10*E.ResScale
-		local CASTBAR_HEIGHT = 20*E.ResScale
-		local CASTBAR_WIDTH = C["unitframes"].casttargetwidth*E.ResScale
-		local PORTRAIT_WIDTH = 45*E.ResScale
+		local POWERBAR_WIDTH = C["unitframes"].playtarwidth/2*Z.raidscale
+		local CLASSBAR_WIDTH = (C["unitframes"].playtarwidth - (2*2))*Z.raidscale
+		local POWERBAR_HEIGHT = 10*Z.raidscale
+		local CASTBAR_HEIGHT = 20*Z.raidscale
+		local CASTBAR_WIDTH = C["unitframes"].casttargetwidth*Z.raidscale
+		local PORTRAIT_WIDTH = 45*Z.raidscale
 	
 		if C["unitframes"].charportraithealth == true or C["unitframes"].charportrait == false then
 			PORTRAIT_WIDTH = 0
 		elseif C["unitframes"].charportrait == true then
-			CLASSBAR_WIDTH = math.ceil(((C["unitframes"].playtarwidth - (2*2)) - 45)*E.ResScale)
+			CLASSBAR_WIDTH = math.ceil(((C["unitframes"].playtarwidth - (2*2)) - 45)*Z.raidscale)
 		end
 
 		--Health Bar
-		local health = E.ContructHealthBar(self, true, true)
+		local health = Z.ContructHealthBar(self, true, true)
 		health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
 		if POWERTHEME == true then
 			health:Point("BOTTOMLEFT", self, "BOTTOMLEFT", BORDER, BORDER + (POWERBAR_HEIGHT/2))
@@ -710,7 +709,7 @@ local function Shared(self, unit)
 		self.Health = health
 
 		--Power Bar
-		local power = E.ConstructPowerBar(self, true, true)
+		local power = Z.ConstructPowerBar(self, true, true)
 		if POWERTHEME == true then
 			power:Width(POWERBAR_WIDTH - BORDER*2)
 			power:Height(POWERBAR_HEIGHT - BORDER*2)
@@ -730,7 +729,7 @@ local function Shared(self, unit)
 		self.Name:SetJustifyH("LEFT")
 		self.Name:SetShadowColor(0, 0, 0, 0)
 		self.Name.frequentUpdates = 0.2
-		self:Tag(self.Name, '[Elvui:getnamecolor][Elvui:namelong] [Elvui:diffcolor][level] [shortclassification]')
+		self:Tag(self.Name, '[Zui:getnamecolor][Zui:namelong] [Zui:diffcolor][level] [shortclassification]')
 		
 		--Portrait
 		if C["unitframes"].charportrait == true then
@@ -773,47 +772,47 @@ local function Shared(self, unit)
 		end
 				
 		--Auras
-		if C["unitframes"].targetauras then
+		--if C["unitframes"].targetauras then
 			local buffs = CreateFrame("Frame", nil, self)
 			buffs.num = C["unitframes"].playtarbuffperrow
 			buffs:SetWidth(TARGET_WIDTH)
-			buffs.spacing = E.Scale(SPACING)
-			buffs.size = (((C["unitframes"].playtarwidth - (buffs.spacing*(buffs.num - 1))) / buffs.num))*E.ResScale
+			buffs.spacing = Z.Scale(SPACING)
+			buffs.size = (((C["unitframes"].playtarwidth - (buffs.spacing*(buffs.num - 1))) / buffs.num))*Z.raidscale
 			buffs:Point("BOTTOM", self, "TOP", 0, SPACING)
 			buffs:SetHeight(buffs.size)
 			buffs.initialAnchor = 'BOTTOMLEFT'
 			buffs["growth-y"] = "UP"	
 			buffs["growth-x"] = "RIGHT"
-			buffs.PostCreateIcon = E.PostCreateAura
-			buffs.PostUpdateIcon = E.PostUpdateAura
+			buffs.PostCreateIcon = Z.PostCreateAura
+			buffs.PostUpdateIcon = Z.PostUpdateAura
 			self.Buffs = buffs	
 			
 			local debuffs = CreateFrame("Frame", nil, self)
 			debuffs.num = C["unitframes"].playtarbuffperrow
 			debuffs:SetWidth(TARGET_WIDTH)
-			debuffs.spacing = E.Scale(SPACING)
-			debuffs.size = ((C["unitframes"].playtarwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)*E.ResScale
+			debuffs.spacing = Z.Scale(SPACING)
+			debuffs.size = ((C["unitframes"].playtarwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)*Z.raidscale
 			debuffs:SetHeight(debuffs.size)
 			debuffs:Point("BOTTOM", buffs, "TOP", 0, SPACING)	
 			debuffs.initialAnchor = 'BOTTOMRIGHT'
 			debuffs["growth-y"] = "UP"
 			debuffs["growth-x"] = "LEFT"
-			debuffs.PostCreateIcon = E.PostCreateAura
-			debuffs.PostUpdateIcon = E.PostUpdateAura
-			debuffs.CustomFilter = E.AuraFilter
+			debuffs.PostCreateIcon = Z.PostCreateAura
+			debuffs.PostUpdateIcon = Z.PostUpdateAura
+			debuffs.CustomFilter = Z.AuraFilter
 			self.Debuffs = debuffs
-		end
+		--end
 
 		--Cast Bar
-		if C["unitframes"].unitcastbar == true then
-			local castbar = E.ConstructCastBar(self, CASTBAR_WIDTH, CASTBAR_HEIGHT, "RIGHT")
+		--if C["unitframes"].unitcastbar == true then
+			local castbar = Z.ConstructCastBar(self, CASTBAR_WIDTH, CASTBAR_HEIGHT, "RIGHT")
 			castbar:Point("TOPLEFT", self, "BOTTOMLEFT", BORDER, -(BORDER*2+BORDER))
 			
 			self.Castbar = castbar
-		end
+		--end
 		
 		-- Debuff Highlight
-		if C["unitframes"].debuffhighlight == true then
+		--if C["unitframes"].debuffhighlight == true then
 			local dbh = self:CreateTexture(nil, "OVERLAY")
 			if POWERTHEME == true then
 				dbh:SetPoint("TOPLEFT")
@@ -827,11 +826,11 @@ local function Shared(self, unit)
 			self.DebuffHighlight = dbh
 			self.DebuffHighlightFilter = true
 			self.DebuffHighlightAlpha = 0.35
-		end
+		--end
 
 		--Combat Feedback
-		if C["unitframes"].combatfeedback == true then
-			self:FontString("CombatFeedbackText", FONT, FONTSIZE, "OUTLINE")
+		--if C["unitframes"].combatfeedback == true then
+			self:FontString("CombatFeedbackText", NUMFONT, FONTSIZE, "OUTLINE")
 			self.CombatFeedbackText:SetPoint("CENTER", health, "CENTER", 0, -5)
 			
 			self.CombatFeedbackText.colors = {
@@ -850,7 +849,7 @@ local function Shared(self, unit)
 				ENERGIZE = {0.31, 0.45, 0.63},
 				CRITENERGIZE = {0.31, 0.45, 0.63},
 			}
-		end
+		--end
 
 		--Combo Bar
 		local combo = CreateFrame("Frame", nil, self)
@@ -871,7 +870,7 @@ local function Shared(self, unit)
 				combo[i]:Point("LEFT", combo[i-1], "RIGHT", SPACING, 0)
 			end
 			combo[i]:SetAlpha(0.15)
-			combo[i]:SetWidth(E.Scale(CLASSBAR_WIDTH - 4)/5)
+			combo[i]:SetWidth(Z.Scale(CLASSBAR_WIDTH - 4)/5)
 		end
 		
 		combo[1]:SetStatusBarColor(0.69, 0.31, 0.31)		
@@ -890,7 +889,7 @@ local function Shared(self, unit)
 		the combobar is movable with the /moveele command, this should make it work correctly only 
 		after a reloadui.]]
 		combo:HookScript("OnShow", function()			
-			if ElementsPos and HealComboBar and ElementsPos["HealComboBar"]["moved"] and E.CreatedMoveEleFrames["HealComboBar"] then return end
+			--if ElementsPos and HealComboBar and ElementsPos["HealComboBar"]["moved"] and E.CreatedMoveEleFrames["HealComboBar"] then return end
 			combo:ClearAllPoints()
 			combo:Point("BOTTOMLEFT", health.backdrop, "TOPLEFT", BORDER, BORDER+SPACING)
 			
@@ -900,17 +899,14 @@ local function Shared(self, unit)
 			health:Point("TOPRIGHT", self, "TOPRIGHT", -(BORDER+PORTRAIT_WIDTH), -BORDER)
 		end)
 		combo:SetScript("OnUpdate", function()
-			if C["general"].classcolortheme == true and combo:IsShown() then
-				combo.backdrop:SetBackdropBorderColor(self.Health:GetStatusBarColor())
-			elseif C["general"].classcolortheme ~= true then
-				combo:SetScript("OnUpdate", nil)
-			end			
+      combo:SetScript("OnUpdate", nil)
 		end)		
 		combo:Hide()
 		
-		combo.Override = E.ComboDisplay
+		combo.Override = Z.ComboDisplay
 		self.CPoints = combo
-		
+		self:RegisterEvent("UNIT_COMBO_POINTS", Z.ComboDisplay)
+    
 		--Incoming Heals
 		if C["raidframes"].healcomm == true then
 			local mhpb = CreateFrame('StatusBar', nil, health)
@@ -943,12 +939,12 @@ local function Shared(self, unit)
 	--	TargetofTarget, Pet, PetTarget, Focus, FocusTarget
 	------------------------------------------------------------------------
 	if (unit == "targettarget" or unit == "pet" or unit == "pettarget" or unit == "focustarget" or unit == "focus") then
-		local POWERBAR_WIDTH = C["unitframes"].smallwidth/1.5*E.ResScale
+		local POWERBAR_WIDTH = C["unitframes"].smallwidth/1.5*Z.raidscale
 		local POWERBAR_HEIGHT = 8
-		local CASTBAR_WIDTH = C["unitframes"].castfocuswidth*E.ResScale
+		local CASTBAR_WIDTH = C["unitframes"].castfocuswidth*Z.raidscale
 		
 		--Health Bar
-		local health = E.ContructHealthBar(self, true, nil)
+		local health = Z.ContructHealthBar(self, true, nil)
 		health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
 		if POWERTHEME == true then
 			health:Point("BOTTOMLEFT", self, "BOTTOMLEFT", BORDER, BORDER + (POWERBAR_HEIGHT/2))
@@ -960,7 +956,7 @@ local function Shared(self, unit)
 
 		--Power Bar
 		if unit ~= "pettarget" then
-			local power = E.ConstructPowerBar(self, true, nil)
+			local power = Z.ConstructPowerBar(self, true, nil)
 			if POWERTHEME == true then
 				power:Width(POWERBAR_WIDTH - BORDER*2)
 				power:Height(POWERBAR_HEIGHT - BORDER*2)
@@ -980,28 +976,28 @@ local function Shared(self, unit)
 		self.Name:Point("CENTER", health, "CENTER", 0, 2)
 		self.Name:SetShadowColor(0, 0, 0, 0)
 		self.Name.frequentUpdates = 0.5
-		self:Tag(self.Name, '[Elvui:getnamecolor][Elvui:namemedium]')		
+		self:Tag(self.Name, '[Zui:getnamecolor][Zui:namemedium]')		
 		
 		--Auras
-		if (unit == "targettarget" and C["unitframes"].totdebuffs == true) or (unit == "focus" and C["unitframes"].focusdebuffs == true) then	
+		if (unit == "targettarget") or (unit == "focus") then	
 			local debuffs = CreateFrame("Frame", nil, self)
 			debuffs.num = C["unitframes"].smallbuffperrow
 			debuffs:SetWidth(SMALL_WIDTH)
-			debuffs.spacing = E.Scale(SPACING)
-			debuffs.size = ((C["unitframes"].smallwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)*E.ResScale
+			debuffs.spacing = Z.Scale(SPACING)
+			debuffs.size = ((C["unitframes"].smallwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)*Z.raidscale
 			debuffs:SetHeight(debuffs.size)
 			debuffs:Point("TOP", self, "BOTTOM", 0, -SPACING)	
 			debuffs.initialAnchor = 'BOTTOMRIGHT'
 			debuffs["growth-y"] = "UP"
 			debuffs["growth-x"] = "LEFT"
-			debuffs.PostCreateIcon = E.PostCreateAura
-			debuffs.PostUpdateIcon = E.PostUpdateAura
-			debuffs.CustomFilter = E.AuraFilter
+			debuffs.PostCreateIcon = Z.PostCreateAura
+			debuffs.PostUpdateIcon = Z.PostUpdateAura
+			debuffs.CustomFilter = Z.AuraFilter
 			self.Debuffs = debuffs
 		end
 	
 		-- Debuff Highlight
-		if C["unitframes"].debuffhighlight == true then
+		--if C["unitframes"].debuffhighlight == true then
 			local dbh = self:CreateTexture(nil, "OVERLAY")
 			if POWERTHEME == true then
 				dbh:SetPoint("TOPLEFT")
@@ -1015,7 +1011,7 @@ local function Shared(self, unit)
 			self.DebuffHighlight = dbh
 			self.DebuffHighlightFilter = true
 			self.DebuffHighlightAlpha = 0.35
-		end
+		--end
 		
 		if unit == "pet" then
 			--Dummy Cast Bar, so we don't see an extra castbar while in vehicle
@@ -1026,17 +1022,17 @@ local function Shared(self, unit)
 			
 			--Incoming Pet Heals
 			if C["raidframes"].raidunitbuffwatch == true then
-				E.createAuraWatch(self,unit)
+				Z.createAuraWatch(self,unit)
 			end
 			
 			--Autohide in combat
 			if C["unitframes"].combat == true then
-				self:HookScript("OnEnter", function(self) E.Fader(self, true) end)
-				self:HookScript("OnLeave", function(self) E.Fader(self, false) end)
+				self:HookScript("OnEnter", function(self) Z.Fader(self, true) end)
+				self:HookScript("OnLeave", function(self) Z.Fader(self, false) end)
 			end
-		elseif unit == "focus" and C["unitframes"].unitcastbar == true	then
+		elseif unit == "focus"	then
 			--Cast Bar
-			local castbar = E.ConstructCastBar(self, CASTBAR_WIDTH, 20, "LEFT")
+			local castbar = Z.ConstructCastBar(self, CASTBAR_WIDTH, 20, "LEFT")
 			castbar:Point("TOP", UIParent, "TOP", 0, -150)
 			
 			self.Castbar = castbar
@@ -1047,21 +1043,21 @@ local function Shared(self, unit)
 	--	Arena and Boss
 	------------------------------------------------------------------------
 	if (unit and unit:find("arena%d") and C["unitframes"].arena == true) or (unit and unit:find("boss%d") and C["unitframes"].showboss == true) then
-		local POWERBAR_WIDTH = C["unitframes"].arenabosswidth/2*E.ResScale
+		local POWERBAR_WIDTH = C["unitframes"].arenabosswidth/2*Z.raidscale
 		local TRINKET_WIDTH = BOSS_HEIGHT * 0.9
 		local POWERBAR_HEIGHT = 7
-		local CASTBAR_HEIGHT = 16*E.ResScale
+		local CASTBAR_HEIGHT = 16*Z.raidscale
 		local CASTBAR_WIDTH = BOSS_WIDTH
 
 		if unit:find("arena%d") then
-			POWERBAR_WIDTH = C["unitframes"].arenabosswidth/2.3*E.ResScale
+			POWERBAR_WIDTH = C["unitframes"].arenabosswidth/2.3*Z.raidscale
 		end
 		
 		-- Right-click focus on arena or boss units
 		self:SetAttribute("type2", "focus")
 		
 		--Health Bar
-		local health = E.ContructHealthBar(self, true, true)
+		local health = Z.ContructHealthBar(self, true, true)
 		health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
 		if POWERTHEME == true then
 			health:Point("BOTTOMLEFT", self, "BOTTOMLEFT", BORDER, BORDER + (POWERBAR_HEIGHT/2))
@@ -1073,7 +1069,7 @@ local function Shared(self, unit)
 		self.Health = health
 		
 		--Power Bar
-		local power = E.ConstructPowerBar(self, true, true)
+		local power = Z.ConstructPowerBar(self, true, true)
 		if POWERTHEME == true then
 			power:Width(POWERBAR_WIDTH - BORDER*2)
 			power:Height(POWERBAR_HEIGHT - BORDER*2)
@@ -1111,7 +1107,7 @@ local function Shared(self, unit)
 			self.Trinket = trinket			
 		end
 		
-		--Name & AltPowerBar
+		--[[Name & AltPowerBar
 		if (unit and unit:find('boss%d')) then
 			local altpower = CreateFrame("StatusBar", nil, self)
 			altpower:SetStatusBarTexture(NORMTEX)
@@ -1138,20 +1134,20 @@ local function Shared(self, unit)
 			altpower.text:Point("RIGHT", power.value, "LEFT", 2, E.mult)		
 			
 			self.AltPowerBar = altpower
-		end
+		end]]
 		
 		--Name
 		self:FontString("Name", FONT, FONTSIZE, "THINOUTLINE")
 		self.Name:Point("LEFT", health, "LEFT", 4, 0)
 		self.Name:SetShadowColor(0, 0, 0, 0)
 		self.Name.frequentUpdates = 0.5
-		self:Tag(self.Name, '[Elvui:getnamecolor][Elvui:namemedium]')
+		self:Tag(self.Name, '[Zui:getnamecolor][Zui:namemedium]')
 				
 		--Auras
 		local buffs = CreateFrame("Frame", nil, self)
 		buffs.num = 3
 		buffs:SetWidth(BOSS_WIDTH)
-		buffs.spacing = E.Scale(SPACING)
+		buffs.spacing = Z.Scale(SPACING)
 		if POWERTHEME == true then
 			buffs.size = BOSS_HEIGHT - (POWERBAR_HEIGHT - BORDER - SPACING)
 		else
@@ -1162,17 +1158,17 @@ local function Shared(self, unit)
 		buffs.initialAnchor = 'RIGHT'
 		buffs["growth-y"] = "UP"	
 		buffs["growth-x"] = "LEFT"
-		buffs.PostCreateIcon = E.PostCreateAura
-		buffs.PostUpdateIcon = E.PostUpdateAura
+		buffs.PostCreateIcon = Z.PostCreateAura
+		buffs.PostUpdateIcon = Z.PostUpdateAura
 		if (unit and unit:find('arena%d')) then
-			buffs.CustomFilter = E.AuraFilter
+			buffs.CustomFilter = Z.AuraFilter
 		end
 		self.Buffs = buffs	
 		
 		local debuffs = CreateFrame("Frame", nil, self)
 		debuffs.num = 3
 		debuffs:SetWidth(BOSS_WIDTH)
-		debuffs.spacing = E.Scale(2)
+		debuffs.spacing = Z.Scale(2)
 		if POWERTHEME == true then
 			debuffs.size = BOSS_HEIGHT - (POWERBAR_HEIGHT - BORDER - SPACING)
 		else
@@ -1183,18 +1179,18 @@ local function Shared(self, unit)
 		debuffs.initialAnchor = 'LEFT'
 		debuffs["growth-y"] = "UP"
 		debuffs["growth-x"] = "RIGHT"
-		debuffs.PostCreateIcon = E.PostCreateAura
-		debuffs.PostUpdateIcon = E.PostUpdateAura
-		debuffs.CustomFilter = E.AuraFilter
+		debuffs.PostCreateIcon = Z.PostCreateAura
+		debuffs.PostUpdateIcon = Z.PostUpdateAura
+		debuffs.CustomFilter = Z.AuraFilter
 		self.Debuffs = debuffs
 
 		--Cast Bar
-		if C["unitframes"].unitcastbar == true then
-			local castbar = E.ConstructCastBar(self, CASTBAR_WIDTH, CASTBAR_HEIGHT, "RIGHT")
+		--if C["unitframes"].unitcastbar == true then
+			local castbar = Z.ConstructCastBar(self, CASTBAR_WIDTH, CASTBAR_HEIGHT, "RIGHT")
 			castbar:Point("TOPLEFT", self, "BOTTOMLEFT", BORDER, -BORDER*2)
 			
 			self.Castbar = castbar
-		end
+		--end
 	end
 
 	------------------------------------------------------------------------
@@ -1202,7 +1198,7 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 	if unit == "raid" or unit == "raidtarget" then
 		--Health Bar
-		local health = E.ContructHealthBar(self, true, nil)
+		local health = Z.ContructHealthBar(self, true, nil)
 		health:Point("TOPRIGHT", self, "TOPRIGHT", -BORDER, -BORDER)
 		health:Point("BOTTOMLEFT", self, "BOTTOMLEFT", BORDER, BORDER)
 		self.Health = health
@@ -1212,7 +1208,7 @@ local function Shared(self, unit)
 		self.Name:Point("CENTER", health, "CENTER", 0, 2)
 		self.Name.frequentUpdates = 0.5
 		self.Name:SetShadowColor(0, 0, 0, 0)
-		self:Tag(self.Name, '[Elvui:getnamecolor][Elvui:namemedium]')			
+		self:Tag(self.Name, '[Zui:getnamecolor][Zui:namemedium]')			
 	end
 	
 	------------------------------------------------------------------------
@@ -1220,7 +1216,7 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 	if unit ~= "party" then
 		local RaidIcon = self:CreateTexture(nil, "OVERLAY")
-		RaidIcon:SetTexture("Interface\\AddOns\\ElvUI\\media\\textures\\raidicons.blp") 
+		RaidIcon:SetTexture("Interface\\AddOns\\zodui\\res\\textures\\raidicons.blp") 
 		RaidIcon:Size(18, 18)
 		RaidIcon:Point("CENTER", self.Health, "TOP", 0, BORDER)
 		self.RaidIcon = RaidIcon
@@ -1233,75 +1229,75 @@ end
 --	Default Positions
 ------------------------------------------------------------------------
 local function LoadHealLayout()
-	local oUF = ElvUF or oUF
-	assert(oUF, "ElvUI was unable to locate oUF.")
+	local oUF = zUF or oUF
+	assert(oUF, "ZUI was unable to locate oUF.")
 	
-	if E.LoadUFFunctions then E.LoadUFFunctions("ElvHeal") end
-	oUF:RegisterStyle('Elv', Shared)
-
+	if Z.LoadUFFunctions then Z.LoadUFFunctions("Heal") end
+	oUF:RegisterStyle('Zod', Shared)
+  oUF:SetActiveStyle("Zod")  --3.35
 	-- Player
-	local player = oUF:Spawn('player', "ElvHeal_player")
-	player:Point("BOTTOMRIGHT", ElvuiSplitActionBarLeftBackground, "TOPRIGHT", 0, 200)
+	local player = oUF:Spawn('player', "HealPlayer")
+	player:Point("BOTTOMRIGHT", TukuiBar2, "TOPRIGHT", 0, 200)
 	player:Size(PLAYER_WIDTH, PLAYER_HEIGHT)
 
 	-- Target
-	local target = oUF:Spawn('target', "ElvHeal_target")
-	target:Point("BOTTOMLEFT", ElvuiSplitActionBarRightBackground, "TOPLEFT", 0, 200)
+	local target = oUF:Spawn('target', "HealTarget")
+	target:Point("BOTTOMLEFT", TukuiBar3, "TOPLEFT", 0, 200)
 	target:SetSize(TARGET_WIDTH, TARGET_HEIGHT)
 
 	-- Target's Target
-	local tot = oUF:Spawn('targettarget', "ElvHeal_targettarget")
-	tot:Point("TOPRIGHT", ElvHeal_target, "BOTTOMRIGHT", 0, -42)
+	local tot = oUF:Spawn('targettarget', "HealTargettarget")
+	tot:Point("TOPRIGHT", HealTarget, "BOTTOMRIGHT", 0, -42)
 	tot:Size(SMALL_WIDTH, SMALL_HEIGHT)
 	
 	-- Focus
-	local focus = oUF:Spawn('focus', "ElvHeal_focus")
-	focus:Point("TOPLEFT", ElvHeal_player, "BOTTOMLEFT", 0, -42)
+	local focus = oUF:Spawn('focus', "HealFocus")
+	focus:Point("TOPLEFT", HealPlayer, "BOTTOMLEFT", 0, -42)
 	focus:Size(SMALL_WIDTH, SMALL_HEIGHT)
 
 	-- Player's Pet
-	local pet = oUF:Spawn('pet', "ElvHeal_pet")
-	pet:Point("TOPRIGHT", ElvHeal_player, "BOTTOMRIGHT", 0, -42)
+	local pet = oUF:Spawn('pet', "HealPet")
+	pet:Point("TOPRIGHT", HealPlayer, "BOTTOMRIGHT", 0, -42)
 	pet:Size(SMALL_WIDTH, SMALL_HEIGHT)
 	pet:SetParent(player)
 
 	-- Focus's target
 	if C["unitframes"].showfocustarget == true then
-		local focustarget = oUF:Spawn('focustarget', "ElvHeal_focustarget")
-		focustarget:Point("TOP", ElvHeal_focus, "BOTTOM", 0, -32)
+		local focustarget = oUF:Spawn('focustarget', "HealFocustarget")
+		focustarget:Point("TOP", HealFocus, "BOTTOM", 0, -32)
 		focustarget:Size(SMALL_WIDTH, SMALL_HEIGHT)
 	end
 
 
-	if C.unitframes.arena then
+	--if C.unitframes.arena then
 		local arena = {}
 		for i = 1, 5 do
-			arena[i] = oUF:Spawn("arena"..i, "ElvHealArena"..i)
+			arena[i] = oUF:Spawn("arena"..i, "HealArena"..i)
 			if i == 1 then
-				arena[i]:Point("BOTTOMLEFT", ChatRBackground2, "TOPLEFT", -80, 285)
+				arena[i]:Point("BOTTOMLEFT", ZuiChatBackgroundRight, "TOPLEFT", -80, 285)
 			else
 				arena[i]:Point("BOTTOM", arena[i-1], "TOP", 0, 38)
 			end
 			arena[i]:Size(BOSS_WIDTH, BOSS_HEIGHT)
 		end
-	end
+	--end
 
-	if C["unitframes"].showboss then
+	--if C["unitframes"].showboss then
 		local boss = {}
 		for i = 1, MAX_BOSS_FRAMES do
-			boss[i] = oUF:Spawn("boss"..i, "ElvHealBoss"..i)
+			boss[i] = oUF:Spawn("boss"..i, "HealBoss"..i)
 			if i == 1 then
-				boss[i]:Point("BOTTOMLEFT", ChatRBackground2, "TOPLEFT", -80, 285)
+				boss[i]:Point("BOTTOMLEFT", ZuiChatBackgroundRight, "TOPLEFT", -80, 285)
 			else
 				boss[i]:Point('BOTTOM', boss[i-1], 'TOP', 0, 38)             
 			end
 			boss[i]:Size(BOSS_WIDTH, BOSS_HEIGHT)
 		end
-	end
+	--end
 
 
 	if C["raidframes"].maintank == true then
-		local tank = oUF:SpawnHeader('ElvHealMainTank', nil, 'raid', 
+		local tank = oUF:SpawnHeader('HealMainTank', nil, 'raid', 
 			'oUF-initialConfigFunction', ([[
 				self:SetWidth(%d)
 				self:SetHeight(%d)
@@ -1310,13 +1306,13 @@ local function LoadHealLayout()
 			'groupFilter', 'MAINTANK', 
 			'yOffset', 7, 
 			'point' , 'BOTTOM',
-			'template', 'Elv_Mtt'
+			'template', 'Zui_Mtt'
 		)
 		tank:Point("LEFT", UIParent, "LEFT", 6, 250)
 	end
 
 	if C["raidframes"].mainassist == true then
-		local assist = oUF:SpawnHeader("ElvHealMainAssist", nil, 'raid', 
+		local assist = oUF:SpawnHeader("HealMainAssist", nil, 'raid', 
 			'oUF-initialConfigFunction', ([[
 				self:SetWidth(%d)
 				self:SetHeight(%d)
@@ -1325,18 +1321,18 @@ local function LoadHealLayout()
 			'groupFilter', 'MAINASSIST', 
 			'yOffset', 7, 
 			'point' , 'BOTTOM',
-			'template', 'Elv_Mtt'
+			'template', 'Zui_Mtt'
 		)
 		if C["raidframes"].maintank == true then 
-			assist:Point("TOPLEFT", ElvHealMainTank, "BOTTOMLEFT", 0, -50)
+			assist:Point("TOPLEFT", HealMainTank, "BOTTOMLEFT", 0, -50)
 		else
 			assist:Point("LEFT", UIParent, "LEFT", 6, 250)
 		end
 	end
 
-	local party
+	local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
 	if C["raidframes"].disableblizz == true then --seriosly lazy addon authors can suck my dick
-		for i = 1,MAX_BOSS_FRAMES do
+		--[[for i = 1,MAX_BOSS_FRAMES do
 			local t_boss = _G["Boss"..i.."TargetFrame"]
 			t_boss:UnregisterAllEvents()
 			t_boss.Show = E.dummy
@@ -1353,19 +1349,19 @@ local function LoadHealLayout()
 				CompactRaidFrameContainer:Kill()
 				CompactPartyFrame:Kill()
 			end
-		end)
+		end)]]
 	end
 	
-	E.LoadMoveElements("Heal")
+	--Z.LoadMoveElements("Heal")
 	if C["classtimer"].enable == true then
-		E.LoadClassTimers(ElvHeal_player, ElvHeal_target)
+		Z.LoadClassTimers(HealPlayer, HealTarget)
 	end
 end
 
-E.Layouts["Heal"] = LoadHealLayout
+Z.Layouts["Heal"] = LoadHealLayout
 ------------------------------------------------------------------------
 --	Right-Click on unit frames menu.
-------------------------------------------------------------------------
+--[[----------------------------------------------------------------------
 
 do
 	UnitPopupMenus["SELF"] = { "PVP_FLAG", "LOOT_METHOD", "LOOT_THRESHOLD", "OPT_OUT_LOOT_TITLE", "LOOT_PROMOTE", "DUNGEON_DIFFICULTY", "RAID_DIFFICULTY", "RESET_INSTANCES", "RAID_TARGET_ICON", "SELECT_ROLE", "CONVERT_TO_PARTY", "CONVERT_TO_RAID", "LEAVE", "CANCEL" };
@@ -1379,4 +1375,4 @@ do
 	UnitPopupMenus["ARENAENEMY"] = { "CANCEL" }
 	UnitPopupMenus["FOCUS"] = { "RAID_TARGET_ICON", "CANCEL" }
 	UnitPopupMenus["BOSS"] = { "RAID_TARGET_ICON", "CANCEL" }
-end
+end]]

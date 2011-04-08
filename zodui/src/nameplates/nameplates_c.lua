@@ -493,7 +493,7 @@ local function SkinObjects(frame)
 	raidicon:ClearAllPoints()
 	raidicon:SetPoint("BOTTOM", hp, "TOP", 0, 16)
 	raidicon:SetSize(iconSize*1.4, iconSize*1.4)
-	raidicon:SetTexture([[Interface\AddOns\zodui\resource\textures\raidicons.blp]])
+	raidicon:SetTexture([[Interface\AddOns\zodui\res\textures\raidicons.blp]])
 	frame.raidicon = raidicon
 
 	--Hide Old Stuff

@@ -35,7 +35,7 @@ ZuiFonts:SetScript("OnEvent", function(self, event, addon)
 		SetCVar("CombatHealing",0)
 		
 		-- set an invisible font for xp, honor kill, etc
-		local INVISIBLE = [=[Interface\Addons\zodui\resource\fonts\invisible_font.ttf]=]
+		local INVISIBLE = [=[Interface\Addons\zodui\res\fonts\invisible_font.ttf]=]
 		COMBAT = INVISIBLE
 	end
 

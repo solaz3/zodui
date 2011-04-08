@@ -15,7 +15,7 @@ local movebutton = CreateFrame ("Frame", nil, WorldMapFrameSizeUpButton)
 movebutton:Height(32)
 movebutton:Width(32)
 movebutton:Point("TOP", WorldMapFrameSizeUpButton, "BOTTOM", -1, 4)
-movebutton:SetBackdrop({bgFile = "Interface\\AddOns\\zodui\\resource\\textures\\cross"})
+movebutton:SetBackdrop({bgFile = "Interface\\AddOns\\zodui\\res\\textures\\cross"})
 movebutton:EnableMouse(true)
 
 movebutton:SetScript("OnMouseDown", function()

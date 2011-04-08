@@ -6,7 +6,7 @@ Kill:RegisterEvent("ADDON_LOADED")
 Kill:RegisterEvent("PLAYER_LOGIN")
 Kill:SetScript("OnEvent", function(self, event, addon)
 	if event == "PLAYER_LOGIN" then
-		if IsAddOnLoaded("zodui_raid") or IsAddOnLoaded("zodui_raid_healing") then
+		if IsAddOnLoaded("zodui_dps") or IsAddOnLoaded("zodui_heal") then
 			InterfaceOptionsFrameCategoriesButton10:SetScale(0.00001)
 			InterfaceOptionsFrameCategoriesButton10:SetAlpha(0)		
 			InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)

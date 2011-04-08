@@ -1,0 +1,10 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="buffwatch.lua"/>
+  <Script file="classtimer.lua"/>
+  <Script file="errormsg.lua"/>
+  <Script file="nameplate.lua"/>
+  <!--<Script file="raidreminder.lua"/>-->
+  <Script file="reminder.lua"/>
+  <Script file="unitframe.lua"/>
+  <Script file="filger.lua" />
+</Ui>

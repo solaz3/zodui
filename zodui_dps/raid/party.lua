@@ -109,12 +109,12 @@ local function Shared(self, unit)
 		local LFDRole = self:CreateTexture(nil, "OVERLAY")
 		LFDRole:Size(6, 6)
 		LFDRole:Point("TOPRIGHT", health, "TOPRIGHT", -2, -2)
-		LFDRole:SetTexture("Interface\\AddOns\\zodui\\resource\\textures\\lfdicons.blp")
+		LFDRole:SetTexture("Interface\\AddOns\\zodui\\res\\textures\\lfdicons.blp")
 		self.LFDRole = LFDRole		
 		
 		--Raid Icon
 		local RaidIcon = self:CreateTexture(nil, "OVERLAY")
-		RaidIcon:SetTexture("Interface\\AddOns\\zodui\\resource\\textures\\raidicons.blp") 
+		RaidIcon:SetTexture("Interface\\AddOns\\zodui\\res\\textures\\raidicons.blp") 
 		RaidIcon:Size(18, 18)
 		RaidIcon:Point("CENTER", health, "TOP", 0, BORDER)
 		self.RaidIcon = RaidIcon
@@ -204,17 +204,37 @@ oUF:Factory(function(self)
 	oUF:SetActiveStyle("ZuiDPSParty")
 	local party
 	if C["raidframes"].partytarget ~= true then
-		party = self:SpawnHeader("ZuiDPSParty", nil, "custom [@raid6,exists] hide;show",	
+		party = self:SpawnHeader("ZuiDPSParty", nil, "custom [@raid6,exists] hide;show",      'oUF-initialConfigFunction', [[
+				local header = self:GetParent()
+				self:SetWidth(header:GetAttribute('initial-width'))
+				self:SetHeight(header:GetAttribute('initial-height'))
+			]],
+      'initial-width', PARTY_WIDTH,
+			'initial-height', PARTY_HEIGHT,		
 			"showParty", true, 
 			"showPlayer", C["raidframes"].showplayerinparty, 
 			"showRaid", true, 
+      "showSolo", false,
 			"yOffset", Z.Scale(-8)
 		)
 	else
 		party = self:SpawnHeader("ZuiDPSParty", nil, "custom [@raid6,exists] hide;show", 
-			"showParty", true, 
+			'oUF-initialConfigFunction', ([[
+				local header = self:GetParent()
+				local ptarget = header:GetChildren():GetName()
+				self:SetWidth(%d)
+				self:SetHeight(%d)
+				for i = 1, 5 do
+					if ptarget == "ZuiDPSPartyUnitButton"..i.."Target" then
+						header:GetChildren():SetWidth(%d)
+						header:GetChildren():SetHeight(%d)		
+					end
+				end
+			]]):format(PARTY_WIDTH, PARTY_HEIGHT, PTARGET_WIDTH, PTARGET_HEIGHT),			
+      "showParty", true, 
 			"showPlayer", C["raidframes"].showplayerinparty, 
 			"showRaid", true, 
+      "showSolo", false,
 			"yOffset", Z.Scale(-27),
 			'template', 'DPSPartyTarget'
 		)

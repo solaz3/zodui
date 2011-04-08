@@ -1,0 +1,9 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="bind.lua"/>
+  <Script file="chatframes.lua"/>
+	<Script file="copychat.lua"/>
+  <Script file="copyurl.lua"/>
+  <Script file="mousescroll.lua"/>
+	<Script file="sounds.lua"/>
+  <Script file="telltarget.lua"/>
+</Ui>

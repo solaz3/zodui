@@ -1,0 +1,7 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='tinydps.lua' />
+	<Script file='recount.lua' />
+  <Script file='dbm.lua' />
+  <Script file='kle.lua' />
+  <Script file='omen.lua' />
+</Ui>
