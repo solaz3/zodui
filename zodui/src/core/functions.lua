@@ -84,19 +84,6 @@ Z.DataTextTooltipAnchor = function(self)
 	elseif panel == ZuiInfoTop then
 		anchor = "ANCHOR_BOTTOMLEFT"
     yoff = -Z.Scale(5)
-   --[[ local position = ZuiInfoTop:GetPoint()
-		if position:match("LEFT") then
-			anchor = "ANCHOR_BOTTOMRIGHT"
-			yoff = Z.Scale(-6)
-			xoff = 0 - ZuiInfoTop:GetWidth()
-		elseif position:match("RIGHT") then
-			anchor = "ANCHOR_BOTTOMLEFT"
-			yoff = Z.Scale(-6)
-			xoff = ZuiInfoTop:GetWidth()
-		else
-			anchor = "ANCHOR_BOTTOM"
-			yoff = Z.Scale(-6)
-		end]]
 	end
 	
 	return anchor, panel, xoff, yoff

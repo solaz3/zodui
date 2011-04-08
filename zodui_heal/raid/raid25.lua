@@ -152,11 +152,11 @@ local function Shared(self, unit)
 	RaidDebuffs.icon:Point("TOPLEFT", 2, -2)
 	RaidDebuffs.icon:Point("BOTTOMRIGHT", -2, 2)
 	
-	RaidDebuffs.count = RaidDebuffs:FontString('count', C["media"].numfont, C["general"].fontscale*0.75, "THINOUTLINE")
+	RaidDebuffs.count = RaidDebuffs:FontString('count', C["media"].numfont, C["raidframes"].fontsize*0.75, "THINOUTLINE")
 	RaidDebuffs.count:Point('BOTTOMRIGHT', RaidDebuffs, 'BOTTOMRIGHT', 0, 2)
 	RaidDebuffs.count:SetTextColor(1, .9, 0)
 	
-	RaidDebuffs:FontString('time', C["media"].uffont, C["general"].fontscale*0.75, "THINOUTLINE")
+	RaidDebuffs:FontString('time', C["media"].uffont, C["raidframes"].fontsize*0.75, "THINOUTLINE")
 	RaidDebuffs.time:SetPoint('CENTER')
 	RaidDebuffs.time:SetTextColor(1, .9, 0)
 	

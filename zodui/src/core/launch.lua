@@ -249,8 +249,8 @@ StaticPopupDialogs["ZUIDISABLE_RAID"] = {
 	text = L.popup_2raidactive,
 	button1 = "DPS - TANK",
 	button2 = "HEAL",
-	OnAccept = function() DisableAddOn("zodui_dps") EnableAddOn("zodui_heal") ReloadUI() end,
-	OnCancel = function() EnableAddOn("zodui_heal") DisableAddOn("zodui_dps") ReloadUI() end,
+	OnAccept = function() DisableAddOn("zodui_heal") EnableAddOn("zodui_dps") ReloadUI() end,
+	OnCancel = function() EnableAddOn("zodui_dps") DisableAddOn("zodui_heal") ReloadUI() end,
 	timeout = 0,
 	whileDead = 1,
 }
@@ -334,6 +334,7 @@ local function UIHelp()
 	print(L.core_uihelp9)
 	print(L.core_uihelp10)
 	print(L.core_uihelp11)
+  print(L.core_uihelp12)
 	print(" ")
 	print(L.core_uihelp100)
 end

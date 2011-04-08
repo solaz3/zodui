@@ -185,6 +185,7 @@ if Z.client == "zhTW" then
 	L.core_uihelp9 = "|cffFF0000/resetui|r - 重置ZodUI到預設設置."
 	L.core_uihelp10 = "|cffFF0000/rd|r - 解散團隊."
 	L.core_uihelp11 = "|cffFF0000/ainv|r - 啟用密語自動邀請, 您可以設定輸入`/ainv myword`以設置您的密語關鍵字."
+  L.core_uihelp12 = "|cffFF0000/xct|r - 查看xCT帮助."
 	L.core_uihelp100 = "(想看更多? 向上拉吧! ...)"
  
 	L.symbol_CLEAR = "清除"

@@ -184,6 +184,7 @@ L.core_uihelp8 = "|cffFF0000/bags|r - For sorting, buying bank slot, or stacking
 L.core_uihelp9 = "|cffFF0000/resetui|r - Reset ZodUI to default."
 L.core_uihelp10 = "|cffFF0000/rd|r - Disband raid."
 L.core_uihelp11 = "|cffFF0000/ainv|r - Enable autoinvite via keyword on whisper. You can set your own keyword by typing `/ainv myword`"
+L.core_uihelp12 = "|cffFF0000/xct|r - view xCT help."
 L.core_uihelp100 = "(Scroll up for more commands ...)"
 
 L.symbol_CLEAR = "Clear"

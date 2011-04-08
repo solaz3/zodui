@@ -264,7 +264,6 @@ oUF:Factory(function(self)
 		)		
 	end
 	party:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, Z.Scale(32))	
-	print('sad')
 	local partyToggle = CreateFrame("Frame")
 	partyToggle:RegisterEvent("PLAYER_LOGIN")
 	partyToggle:RegisterEvent("RAID_ROSTER_UPDATE")
