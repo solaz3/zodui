@@ -11,11 +11,18 @@ local EOTS = 482
 local TBFG = 736
 local AB = 461
 
+local name, killingBlows, honorableKills, deaths, honorGained, faction, race, class, classToken, damageDone, healingDone
+
 local bgframe = ZuiInfoLeftBattleGround
 bgframe:SetScript("OnEnter", function(self)
 	local numScores = GetNumBattlefieldScores()
 	for i=1, numScores do
-		local name, killingBlows, honorableKills, deaths, honorGained, faction, race, class, classToken, damageDone, healingDone, bgRating, ratingChange = GetBattlefieldScore(i)
+		if Z.isctm then 
+      name, killingBlows, honorableKills, deaths, honorGained, faction, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i)
+    else
+      name, killingBlows, honorableKills, deaths, honorGained, faction, _, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i)
+    end
+    
 		if ( name ) then
 			if ( name == UnitName("player") ) then
 				local curmapid = GetCurrentMapAreaID()
@@ -64,17 +71,17 @@ Stat:EnableMouse(true)
 
 local Text1  = ZuiInfoLeftBattleGround:CreateFontString(nil, "OVERLAY")
 Text1:SetFont(C.media.pxfont, C["datatext"].fontsize,C["datatext"].fontflag)
-Text1:SetPoint("LEFT", ZuiInfoLeftBattleGround, 30, 0.5)
+Text1:SetPoint("LEFT", ZuiInfoLeftBattleGround, 20, 2)
 Text1:SetHeight(ZuiInfoLeft:GetHeight())
 
 local Text2  = ZuiInfoLeftBattleGround:CreateFontString(nil, "OVERLAY")
 Text2:SetFont(C.media.pxfont, C["datatext"].fontsize,C["datatext"].fontflag)
-Text2:SetPoint("CENTER", ZuiInfoLeftBattleGround, 0, 0.5)
+Text2:SetPoint("CENTER", ZuiInfoLeftBattleGround, 0, 2)
 Text2:SetHeight(ZuiInfoLeft:GetHeight())
 
 local Text3  = ZuiInfoLeftBattleGround:CreateFontString(nil, "OVERLAY")
 Text3:SetFont(C.media.pxfont, C["datatext"].fontsize,C["datatext"].fontflag)
-Text3:SetPoint("RIGHT", ZuiInfoLeftBattleGround, -30, 0.5)
+Text3:SetPoint("RIGHT", ZuiInfoLeftBattleGround, -20, 2)
 Text3:SetHeight(ZuiInfoLeft:GetHeight())
 
 local int = 2
@@ -85,17 +92,22 @@ local function Update(self, t)
 		RequestBattlefieldScoreData()
 		local numScores = GetNumBattlefieldScores()
 		for i=1, numScores do
-			local name, killingBlows, honorableKills, deaths, honorGained, faction, race, class, classToken, damageDone, healingDone, bgRating, ratingChange = GetBattlefieldScore(i)
+      if Z.isctm then 
+        name, killingBlows, honorableKills, deaths, honorGained, faction, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i)
+      else
+        name, killingBlows, honorableKills, deaths, honorGained, faction, _, race, class, classToken, damageDone, healingDone = GetBattlefieldScore(i)
+      end
 			if healingDone > damageDone then
-				dmgtxt = (hexa.."Healing: "..hexb..healingDone)
+				dmgtxt = (hexa.."Healing:"..hexb..healingDone)
 			else
-				dmgtxt = (hexa.."Damage: "..hexb..damageDone)
+				dmgtxt = (hexa.."Damage:"..hexb..damageDone)
 			end
+      print(name)
 			if ( name ) then
-				if ( name == Z.myname ) then
-					Text2:SetText(hexa.."Honor: "..hexb..format('%d', honorGained))
+				if ( name == UnitName("player") ) then
+					Text2:SetText(hexa.."Honor:"..hexb..format('%d', honorGained))
 					Text1:SetText(dmgtxt)
-					Text3:SetText(hexa.."Kill Blows: "..hexb..killingBlows)
+					Text3:SetText(hexa.."Kill Blows:"..hexb..killingBlows)
 				end   
 			end
 		end 
