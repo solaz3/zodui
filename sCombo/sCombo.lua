@@ -1,5 +1,5 @@
 -- sCombo
-local Z, C, L = unpack(Zui) -- Import: Z - functions, constants, variables; C - config; L - locales
+local Z, C, L = unpack(Zodui) -- Import: Z - functions, constants, variables; C - config; L - locales
 --[[
 DPSTarget:DisableElement('CPoints')
 for i = 1, 5 do DPSTarget.CPoints[i]:Hide() end]]
@@ -51,7 +51,7 @@ local sPowerBG = CreateFrame("Frame", "sPowerBG", UIParent)
 sPowerBG:CreatePanel("Default", (Options.comboWidth * 5) + (Options.x * 5) - Options.x, Options.comboHeight, "TOPLEFT", sCombo[1], "BOTTOMLEFT", 0, -Options.x)
 sPowerBG:CreateShadow("Default")
 local sPowerStatus = CreateFrame("StatusBar", "sPowerStatus", UIParent)
-sPowerStatus:SetStatusBarTexture(C["media"].normTex)
+sPowerStatus:SetStatusBarTexture(C["media"].norm)
 sPowerStatus:SetFrameLevel(6)
 sPowerStatus:Point("TOPLEFT", sPowerBG, "TOPLEFT", 2, -2)
 sPowerStatus:Point("BOTTOMRIGHT", sPowerBG, "BOTTOMRIGHT", -2, 2)

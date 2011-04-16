@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: xCT
+## Notes: Lightweight Scroll Combat Text
+## Author: Affli
+## Credits: ALZA, Shestak, Tukz, Rostok, hidekki
+## Version: 3.0
+## RequiredDeps: zui
+## OptionalDeps: Blizzard_CombatText
+
+core.lua

@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: Filger
+## Notes: Minimal buff/debuff/proc tracking
+## Author: Nils Ruesch, Affli
+## Credits: Nils Ruesch, Shestak, Affli, Garagar, hidekki
+## Version: 3.0
+## RequiredDeps: zui
+
+Filger_config_wlk.lua
+Filger.lua

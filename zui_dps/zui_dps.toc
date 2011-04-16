@@ -1,0 +1,12 @@
+## Interface: 30300
+## Author: Tukz
+## Title: |cff1784d1z|rui-dps
+## Notes: Raid layout for party and raid, DPS/Tank mode.
+## X-Email: tukz@tukui.org
+## X-Category: UnitFrame
+## RequiredDeps: zui
+
+init.lua
+raid\party.lua
+raid\raid25.lua
+raid\raid40.lua

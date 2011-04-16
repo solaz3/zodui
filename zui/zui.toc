@@ -1,0 +1,14 @@
+﻿## Interface: 30300
+## Author: Tukz
+## Modified: Zod
+## Project Collaborators: Elv22, Nightcracker
+## Credits to: Caith, Caellian, Shestak, Haste, Tekkub, Alza, Roth, P3lim, Tulla, Hungtar, hankthetank, Ishtara and others...
+## Version: 3.5.22
+## Title: |cff1784d1z|rui|r
+## Notes: UI of awesomeness!
+## SavedVariables: zData
+## SavedVariablesPerCharacter: zDataPerChar
+## X-oUF: zUF
+## OptionalDeps: TinyDPS, Clique, Skada, Recount, Omen, KLE, DBM-Core
+
+inc.xml

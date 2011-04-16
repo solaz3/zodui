@@ -3,7 +3,7 @@
 ## Version: 1.3
 ## Title: |cffC495DDs|rCombo
 ## Notes: Minimal Combo Bar Replacement.
-## RequiredDeps: zodui
+## RequiredDeps: zui
 
 sCombo.lua
 

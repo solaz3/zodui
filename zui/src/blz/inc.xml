@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+  <Script file="watchframe.lua" />
+  <Script file="durability.lua"/>
+	<Script file="vehicle.lua"/>
+	<Script file="capturebar.lua"/>
+	<Script file="gm.lua"/>
+	<Script file="ghostframe.lua"/>
+  <Script file="quests.lua"/>
+  <Script file="symbol.lua"/>
+  <Script file="error.lua"/>
+  <Script file="kill.lua"/>
+  <Script file="font.lua"/>
+  <Script file="mirror.lua"/>
+  <Script file="achievements.lua"/>
+</Ui>

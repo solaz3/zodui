@@ -1,0 +1,12 @@
+## Interface: 30300
+## Author: Elv
+## Title: |cff1784d1z|rui-heal
+## Notes: Unitframe layout for party and raid, Healer mode.
+## X-Category: UnitFrame
+## RequiredDeps: zui
+## OptionalDeps: zui_dps
+
+init.lua
+raid\party.lua
+raid\raid25.lua
+raid\raid40.lua

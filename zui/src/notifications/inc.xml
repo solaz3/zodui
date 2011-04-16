@@ -1,0 +1,5 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+	<Script file="selfbuffs.lua"/>
+  <Script file="hunterpethappiness.lua"/>
+  <Script file="announce.lua"/>
+</Ui>

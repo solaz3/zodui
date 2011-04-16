@@ -1,0 +1,5 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+	<!--<Include file="modules\buffs\template.xml"/>
+	<Script file="modules\buffs\buffs.lua"/>-->
+  <Script file="buffs_c.lua"/>
+</Ui>

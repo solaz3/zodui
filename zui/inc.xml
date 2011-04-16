@@ -1,0 +1,23 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+  <Script file="init.lua" />
+  <Script file="cfg.lua" />
+  <Include file="loc\inc.xml" />
+  <Include file="src\core\inc.xml" />
+  <Include file="src\filters\inc.xml" />
+  <Include file="src\blz\inc.xml" />
+  <Include file="src\panels\inc.xml" />
+  <Include file="src\chat\inc.xml" />
+  <Include file="src\misc\inc.xml" />
+  <Include file="src\loot\inc.xml" />
+  <Include file="src\tooltip\inc.xml" />
+  <Include file="src\maps\inc.xml" />
+  <Include file="src\nameplates\inc.xml" />
+  <Include file="src\bags\inc.xml" />
+  <Include file="src\notifications\inc.xml" />
+  <Include file="src\datatext\inc.xml" />
+  <Include file="src\buffs\inc.xml" />
+  <Include file="src\actionbars\inc.xml" />
+  <Include file="src\skins\inc.xml" />
+  <Include file="src\addonskins\inc.xml" />
+  <Include file="src\unitframe\inc.xml" />
+</Ui>

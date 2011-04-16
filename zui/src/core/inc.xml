@@ -1,0 +1,9 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+  <Script file="disable.lua" />
+  <Script file="uiscale.lua" />
+  <Script file="colors.lua" />
+  <Script file="api.lua" />
+  <Script file="launch.lua" />
+  <Script file="clientfonts.lua" />
+  <Script file="movers.lua" />
+</Ui>

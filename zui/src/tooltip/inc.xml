@@ -1,0 +1,4 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	  
+	<Script file="itemidcount.lua"/>
+	<Script file="tooltip.lua"/>
+</Ui>
