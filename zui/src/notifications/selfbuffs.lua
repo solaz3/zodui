@@ -87,7 +87,7 @@ if (enchants and enchants[1]) then
 				self:UnregisterEvent("PLAYER_LEVEL_UP")
 				self.icon:SetTexture(select(3, GetSpellInfo(enchants[1])))
 				return
-			elseif class == "SHAMAN" then
+			elseif Z.isctm and class == "SHAMAN" then
 				local ptt = GetPrimaryTalentTree()
 				if ptt and ptt == 3 and currentlevel > 53 then
 					self.icon:SetTexture(select(3, GetSpellInfo(enchants[3])))
@@ -119,7 +119,7 @@ if (enchants and enchants[1]) then
 						return
 					end
 				end
-			elseif class == "SHAMAN" then
+			elseif Z.isctm and class == "SHAMAN" then
 				local itemid = GetInventoryItemID("player", GetInventorySlotInfo("SecondaryHandSlot"))
 				if itemid and select(6, GetItemInfo(itemid)) == ENCHSLOT_WEAPON then
 					if mainhand and offhand then

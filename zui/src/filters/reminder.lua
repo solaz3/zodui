@@ -29,7 +29,7 @@ local Z, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Lo
 Z.remindbuffs = {
 	PRIEST = {
 		588, -- inner fire
-		73413, -- inner will
+		--73413, -- inner will
 	},
 	HUNTER = {
 		13165, -- hawk

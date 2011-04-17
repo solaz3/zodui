@@ -3,7 +3,7 @@
 ## Modified: Zod
 ## Project Collaborators: Elv22, Nightcracker
 ## Credits to: Caith, Caellian, Shestak, Haste, Tekkub, Alza, Roth, P3lim, Tulla, Hungtar, hankthetank, Ishtara and others...
-## Version: 3.5.24
+## Version: 3.5.25
 ## Title: |cff1784d1z|rui|r
 ## Notes: UI of awesomeness!
 ## SavedVariables: zData
