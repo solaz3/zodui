@@ -37,7 +37,7 @@ else
 	anchor:SetPoint("BOTTOMRIGHT", ZuiInfoRight)
 end
 anchor:SetTemplate("Hydra")
-anchor:SetBackdropBorderColor(C.media.backdropcolor)
+anchor:SetBackdropBorderColor(1, 0, 0)
 anchor:SetMovable(true)
 anchor.text = Z.SetFontString(anchor, C.media.font, 12, "OUTLINE")
 anchor.text:SetPoint("CENTER")

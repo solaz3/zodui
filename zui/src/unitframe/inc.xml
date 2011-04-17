@@ -19,5 +19,6 @@
   <Script file="funcs.lua"/>
   <Script file="layouts\dps.lua"/>
 	<Script file="layouts\heal.lua"/>
+  <Script file="movers.lua"/>
   <Script file="init.lua"/>  
 </Ui>

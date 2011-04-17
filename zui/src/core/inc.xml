@@ -5,5 +5,4 @@
   <Script file="api.lua" />
   <Script file="launch.lua" />
   <Script file="clientfonts.lua" />
-  <Script file="movers.lua" />
 </Ui>

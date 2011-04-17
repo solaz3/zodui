@@ -289,10 +289,8 @@ if C["datatext"].guild and C["datatext"].guild > 0 then
 
 							if name ~= UnitName'player' then
 								menuCountWhispers = menuCountWhispers + 1
-
 								guildMenuList[3].menuList[menuCountWhispers] = {text = format("|cff%02x%02x%02x%d|r |cff%02x%02x%02x%s|r",levelc.r*255,levelc.g*255,levelc.b*255,level,classc.r*255,classc.g*255,classc.b*255,name), arg1 = name,notCheckable=true, func = whisperFriendClick}
 							end
-
 						end
 					end
 				end
@@ -303,7 +301,15 @@ if C["datatext"].guild and C["datatext"].guild > 0 then
 	Stat:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	Stat:SetScript("OnMouseDown", function(self, btn)
 		if btn == "LeftButton" then
-			if not GuildFrame and IsInGuild() then LoadAddOn("Blizzard_GuildUI") end GuildFrame_Toggle() end
-		end)
+			if Z.isctm and not GuildFrame and IsInGuild() then 
+        LoadAddOn("Blizzard_GuildUI") 
+      end 
+      if Z.isctm then
+        GuildFrame_Toggle() 
+      else
+        ToggleFriendsFrame(3) 
+      end
+    end
+  end)
 	Stat:SetScript("OnEvent", Update)
 end
