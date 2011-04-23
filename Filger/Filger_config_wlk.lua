@@ -607,6 +607,8 @@ ns.Filger_Spells = {
 			{ spellID = 30301, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Nightfall
 			{ spellID = 18095, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+      -- Lift Tap
+      { spellID = 63321, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Burning Soul
 			--{ spellID = 74434, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
