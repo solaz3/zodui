@@ -102,7 +102,6 @@ local function Update(self, t)
 			else
 				dmgtxt = (hexa.."Damage:"..hexb..damageDone)
 			end
-      print(name)
 			if ( name ) then
 				if ( name == UnitName("player") ) then
 					Text2:SetText(hexa.."Honor:"..hexb..format('%d', honorGained))

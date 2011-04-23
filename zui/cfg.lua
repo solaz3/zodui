@@ -74,7 +74,7 @@ C["unitframes"] = {
   ["charportraithealth"] = true,  -- 在生命条显示头像
   ["swing"] = true,  -- 武器平砍计时
   ["displayaggro"] = true,  -- 显示OT
-  ["combat"] = true,	 -- 非战斗自动隐藏头像
+  ["combat"] = false,	 -- 非战斗自动隐藏头像
   ["showfocustarget"] = true,    -- 显示焦点目标
   ["classbar"] = true,  -- 职业条(DK的符文 等等)
   --frame sizes
