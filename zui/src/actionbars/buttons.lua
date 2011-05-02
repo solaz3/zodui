@@ -5,7 +5,7 @@ local Z, C, L = unpack(select(2, ...)) -- Import: Z - functions, constants, vari
 
 local function ShowOrHideBar(bar, button)
 	local db = zDataPerChar
-	if bar == ZuiBar5 then
+  if bar == ZuiBar5 then
     if button == ZuiBar5ButtonTop and bar:IsShown() then
       if ZuiBar6:IsShown() then
         ZuiBar6:Hide()
@@ -61,13 +61,11 @@ local function MoveButtonBar(button, bar)
 	local db = zDataPerChar
 	if button == ZuiBar234Button then
 		if ZuiBar4:IsShown() then
-			db.hidebar234 = false
 			button:ClearAllPoints()
 			button:SetBorder()
 			button:Point("BOTTOM", ZuiBar1, "TOP", 0, 2)
 			button.text:SetText(hexa.."-"..hexb)
 		else
-			db.hidebar234 = true
 			button:ClearAllPoints()
 			button:SetBorder()
 			button:Point("BOTTOM", ZuiBar1, "TOP", 0, 2)
@@ -79,7 +77,6 @@ local function MoveButtonBar(button, bar)
 		local buttontop = ZuiBar5ButtonTop
 		local buttonbot = ZuiBar5ButtonBottom
 		if bar:IsShown() then
-			db.hidebar5 = false
 			buttontop:ClearAllPoints()
 			buttontop:SetBorder()
 			buttontop:Size(bar:GetWidth(), 17)
@@ -97,7 +94,6 @@ local function MoveButtonBar(button, bar)
 			ZuiPetBar:Point("RIGHT", bar, "LEFT", -6, 0)		
       ZuiWatchFrameAnchor:Point("TOPRIGHT", bar, "TOPLEFT", -50, 20)
 		else
-			db.hidebar5 = true
 			buttonbot:ClearAllPoints()
 			buttonbot:SetBorder()
 			buttonbot:SetSize(ZuiLineToPetActionBarBackground:GetWidth(), ZuiLineToPetActionBarBackground:GetHeight())
@@ -211,7 +207,8 @@ init:SetScript("OnEvent", function(self, event)
   end
   
   if db.hidebar6 and db.hidebar5 then
-    DrPepper(ZuiBar5ButtonTop, ZuiBar5)
+    ZuiBar5:Hide()
+    MoveButtonBar(ZuiBar5ButtonTop, ZuiBar5)
 	end
 end)
 

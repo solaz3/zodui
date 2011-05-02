@@ -1,8 +1,14 @@
 -- sCombo
 local Z, C, L = unpack(Zodui) -- Import: Z - functions, constants, variables; C - config; L - locales
---[[
-DPSTarget:DisableElement('CPoints')
-for i = 1, 5 do DPSTarget.CPoints[i]:Hide() end]]
+
+if IsAddOnLoaded("zui_dps") then
+  ftar = DPSTarget
+elseif IsAddOnLoaded("zui_heal") then
+  ftar = HealTarget
+end
+
+ftar:DisableElement('CPoints')
+for i = 1, 5 do ftar.CPoints[i]:Hide() end
 local Options = {
     x = Z.Scale(3),
     comboWidth = Z.Scale(55),

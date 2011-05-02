@@ -294,9 +294,15 @@ Z.StopFlash = function(self)
 	end
 end
 
-Z.SlideIn = function(self)
-	if not self.anim then
-		Animate(self)
+Z.SlideIn = function(self, duration)
+  if not self.anim then
+    local x = 0
+    if self == ZuiChatBackgroundLeft or self == ZuiTabsLeftBackground then
+      x = self:GetWidth()/2
+    elseif self == ZuiChatBackgroundRight or self == ZuiTabsRightBackground then
+      x = -self:GetWidth()/2
+    end
+		Animate(self, x, -self:GetHeight()/2, duration)
 	end
 	self.anim.out1:Stop()
 	self:Show()

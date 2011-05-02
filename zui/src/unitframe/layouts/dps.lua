@@ -953,6 +953,11 @@ local function Shared(self, unit)
 			local castbar = Z.BuildCastBar(self, CASTBAR_WIDTH, 20, "LEFT")
 			castbar:Point("TOP", UIParent, "TOP", 0, -150)			
 			self.Castbar = castbar
+    elseif unit == "focustarget"	then
+			--Cast Bar
+			local castbar = Z.BuildCastBar(self, CASTBAR_WIDTH, 20, "RIGHT")
+			castbar:Point("TOP", UIParent, "TOP", 0, -120)			
+			self.Castbar = castbar
 		end
 	end
 	

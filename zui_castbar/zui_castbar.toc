@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: |cff1784d1z|rui-|cffffd200castbar|r
+## Notes: Moves the castbars into separate panels
+## Author: Krevlorne @ EU-Ulduar
+## Version: 1.0
+## RequiredDeps: zui
+## OptionalDeps: zui_dps, zui_heal
+
+config.lua
+core.lua

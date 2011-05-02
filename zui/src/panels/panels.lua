@@ -116,6 +116,41 @@ if C.chat.background then
 	--tabsbgright:Hide() --This will get shown if a chat exists in the bottomright corner
 	tabsbgright:CreateShadow("")
 	tabsbgright:SetBorder()
+  
+  -- hide chat bg on combat
+  if C["chat"].hidebgoncombat then
+    local function HideChatBackground(self, event)
+      if event == "PLAYER_REGEN_ENABLED" then
+        Z.SlideIn(self, 1)
+      elseif event == "PLAYER_REGEN_DISABLED" then
+        Z.SlideOut(self)
+      elseif event == "PLAYER_ENTERING_WORLD" then
+        if InCombatLockdown() then
+          Z.SlideOut(self)
+        else
+          Z.SlideIn(self, .2)
+        end
+      end
+    end
+    
+    chatleftbg:RegisterEvent("PLAYER_ENTERING_WORLD")
+    chatleftbg:RegisterEvent("PLAYER_REGEN_ENABLED")
+    chatleftbg:RegisterEvent("PLAYER_REGEN_DISABLED")    
+    chatrightbg:RegisterEvent("PLAYER_ENTERING_WORLD")
+    chatrightbg:RegisterEvent("PLAYER_REGEN_ENABLED")
+    chatrightbg:RegisterEvent("PLAYER_REGEN_DISABLED")
+    tabsbgleft:RegisterEvent("PLAYER_ENTERING_WORLD")
+    tabsbgleft:RegisterEvent("PLAYER_REGEN_ENABLED")
+    tabsbgleft:RegisterEvent("PLAYER_REGEN_DISABLED")
+    tabsbgright:RegisterEvent("PLAYER_ENTERING_WORLD")
+    tabsbgright:RegisterEvent("PLAYER_REGEN_ENABLED")
+    tabsbgright:RegisterEvent("PLAYER_REGEN_DISABLED")
+   
+    chatleftbg:SetScript("OnEvent", HideChatBackground)
+    chatrightbg:SetScript("OnEvent", HideChatBackground)
+    tabsbgleft:SetScript("OnEvent", HideChatBackground)
+    tabsbgright:SetScript("OnEvent", HideChatBackground)
+  end
 end
 
 -- BOTTOM BAR

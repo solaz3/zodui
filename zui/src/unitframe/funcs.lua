@@ -138,10 +138,11 @@ local _, ns = ...
 			else
 				button:Point("LEFT", castbar, "RIGHT",  Z.Scale(4), 0)
 			end
-			
-			castbar.Icon = button:CreateTexture(nil, "ARTWORK")
-			castbar.Icon:Point("TOPLEFT", button,  Z.Scale(2),  Z.Scale(-2))
-			castbar.Icon:Point("BOTTOMRIGHT", button,  Z.Scale(-2), Z.Scale(2))
+			castbar.Button = button
+      
+			castbar.Icon = castbar.Button:CreateTexture(nil, "ARTWORK")
+			castbar.Icon:Point("TOPLEFT", castbar.Button,  Z.Scale(2),  Z.Scale(-2))
+			castbar.Icon:Point("BOTTOMRIGHT", castbar.Button,  Z.Scale(-2), Z.Scale(2))
 			castbar.Icon:SetTexCoord(0.08, 0.92, 0.08, .92)
 			
 			castbar:Width(width - button:GetWidth() - 6)

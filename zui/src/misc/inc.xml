@@ -6,4 +6,5 @@
 	<Script file="threatbar.lua"/>
   <Script file="autorelease.lua" />
   <Script file="gs.lua" />
+  <Script file="mail.lua" />
 </Ui>

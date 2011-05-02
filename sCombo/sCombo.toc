@@ -4,6 +4,7 @@
 ## Title: |cffC495DDs|rCombo
 ## Notes: Minimal Combo Bar Replacement.
 ## RequiredDeps: zui
+## OptionalDeps: zui_dps, zui_heal
 
 sCombo.lua
 
