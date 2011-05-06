@@ -46,7 +46,7 @@ C["chat"] = {
   ["tabcolor"] = {150/255, 150/255, 150/255},  -- color of chat tabs, disabled if classcolor is true  标签颜色
   ["classcolortab"] = false,   -- color chat tabs based on class  职业着色标签
   ["whispersound"] = true,    -- play a sound when receiving whisper  密语声音提醒
-  ["hidebgoncombat"] = true, -- hide chat background on combat 隐藏聊天背景, warning! may decrese performce
+  ["hidebgoncombat"] = false, -- hide chat background on combat 隐藏聊天背景, warning! may decrese performce
 }
 
 C["unitframes"] = {
