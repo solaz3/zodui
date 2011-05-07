@@ -628,6 +628,15 @@ local function Shared(self, unit)
 			self:HookScript("OnUpdate", Z.UpdateDruidMana)
 		end
 		
+    if C["unitframes"].showselfname then
+      self:FontString("Name", FONT, FONTSIZE, "THINOUTLINE")
+      self.Name:Point("CENTER", health, "CENTER", 0, 2)
+      self.Name:SetJustifyH("LEFT")
+      self.Name.frequentUpdates = 0.2
+      self.Name:SetShadowColor(0, 0, 0, 0)
+      self:Tag(self.Name, '[Zui:getnamecolor][Zui:namelong] [Zui:diffcolor][level] [shortclassification]')
+    end
+    
 		--Alternative Power Bar
     if Z.isctm then
       local altpower = CreateFrame("StatusBar", nil, health)

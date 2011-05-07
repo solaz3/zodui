@@ -46,8 +46,8 @@ _G.ERR_FRIEND_OFFLINE_S = "%s "..L.chat_ERR_FRIEND_OFFLINE_S.."!"
 ----------------------------------------------------------------------------------
 if Z.myclass == "MAGE" then 
 	local function NOOB_FILTER(self, event, arg1, arg2)
-		if strfind(arg1,"开个门") or strfind(arg1,"Portal") or strfind(arg1,"Port") or strfind(arg1,"port") then
-			SendChatMessage("Sorry im busy atm.", "WHISPER", nil, arg2)
+		if strfind(arg1,"开个门") or strfind(arg1,"达拉然") or strfind(arg1,"達拉然") or strfind(arg1,"奥格") then
+			SendChatMessage("抱歉, 么空.", "WHISPER", nil, arg2)
 		end
 	end
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", NOOB_FILTER)

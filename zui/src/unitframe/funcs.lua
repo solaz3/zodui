@@ -911,7 +911,7 @@ local _, ns = ...
 		end
 
 		local buffs = {}
-		if IsAddOnLoaded("zodui_dps") then
+		if IsAddOnLoaded("zui_dps") then
 			if (Z.DPSBuffIDs["ALL"]) then
 				for key, value in pairs(Z.DPSBuffIDs["ALL"]) do
 					tinsert(buffs, value)

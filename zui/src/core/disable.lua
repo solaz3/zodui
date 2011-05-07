@@ -36,3 +36,7 @@ end
 if (IsAddOnLoaded("Gladius")) then
 	C["arena"].unitframes = false
 end
+
+if (IsAddOnLoaded("n_buff")) then
+	C["buff"].enable = false
+end

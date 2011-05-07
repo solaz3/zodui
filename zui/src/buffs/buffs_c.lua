@@ -1,5 +1,33 @@
 local Z, C, L = unpack(select(2, ...)) -- Import:Z - functions, constants, variables; C - config; L - locales
 
+if not C["buff"].enable then return end
+
+local ZuiPlayerBuffs = CreateFrame("Frame", "ZuiPlayerBuffs", UIParent)
+ZuiPlayerBuffs:Width(300)
+ZuiPlayerBuffs:Height(94)
+ZuiPlayerBuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -155, -5)
+ZuiPlayerBuffs:SetTemplate("Default")
+ZuiPlayerBuffs:SetBackdropBorderColor(1, 0, 0)
+ZuiPlayerBuffs:SetClampedToScreen(true)
+ZuiPlayerBuffs:SetMovable(true)
+ZuiPlayerBuffs:SetAlpha(0)
+ZuiPlayerBuffs.text = Z.SetFontString(ZuiPlayerBuffs, C.media.font, 12, "THINOUTLINE")
+ZuiPlayerBuffs.text:SetPoint("CENTER")
+ZuiPlayerBuffs.text:SetText(L.move_buffs)
+
+local ZuiPlayerDebuffs = CreateFrame("Frame", "ZuiPlayerDebuffs", UIParent)
+ZuiPlayerDebuffs:Width(300)
+ZuiPlayerDebuffs:Height(47)
+ZuiPlayerDebuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -155, -105)
+ZuiPlayerDebuffs:SetTemplate("Default")
+ZuiPlayerDebuffs:SetBackdropBorderColor(1, 0, 0)
+ZuiPlayerDebuffs:SetClampedToScreen(true)
+ZuiPlayerDebuffs:SetMovable(true)
+ZuiPlayerDebuffs:SetAlpha(0)
+ZuiPlayerDebuffs.text = Z.SetFontString(ZuiPlayerDebuffs, C.media.font, 12, "THINOUTLINE")
+ZuiPlayerDebuffs.text:SetPoint("CENTER")
+ZuiPlayerDebuffs.text:SetText(L.move_debuffs)
+
 ConsolidatedBuffs:ClearAllPoints()
 ConsolidatedBuffs:SetPoint("LEFT", ZuiMinimap, "LEFT", 2, 0)
 ConsolidatedBuffs:SetSize(16, 16)
@@ -10,12 +38,12 @@ local mainhand, _, _, offhand = GetWeaponEnchantInfo()
 local rowbuffs = 16
 
 TemporaryEnchantFrame:ClearAllPoints()
-TemporaryEnchantFrame:SetPoint("TOPRIGHT", ZuiMinimap, "TOPLEFT", 0, 0)
+TemporaryEnchantFrame:SetPoint("TOPRIGHT", ZuiPlayerBuffs, "TOPRIGHT", 0, 0)
 TemporaryEnchantFrame.SetPoint = Z.dummy
 
 TempEnchant1:ClearAllPoints()
 TempEnchant2:ClearAllPoints()
-TempEnchant1:SetPoint("TOPRIGHT", ZuiMinimap, "TOPLEFT", -8, 0)
+TempEnchant1:SetPoint("TOPRIGHT", ZuiPlayerBuffs, "TOPRIGHT", -8, 0)
 TempEnchant2:SetPoint("RIGHT", TempEnchant1, "LEFT", -4, 0)
 
 WorldStateAlwaysUpFrame:SetFrameStrata("BACKGROUND")
@@ -96,9 +124,9 @@ local function UpdateBuffAnchors()
 			buff:ClearAllPoints()
 			if ( (numBuffs > 1) and (mod(numBuffs, rowbuffs) == 1) ) then
 				if ( numBuffs == rowbuffs+1 ) then
-					buff:SetPoint("TOPRIGHT", ZuiMinimap, "TOPLEFT", -8, -60)
+					buff:SetPoint("TOPRIGHT", ZuiPlayerBuffs, "TOPRIGHT", -8, -60)
 				else
-					buff:SetPoint("TOPRIGHT", ZuiMinimap, "TOPLEFT", -8, 0)
+					buff:SetPoint("TOPRIGHT", ZuiPlayerBuffs, "TOPRIGHT", -8, 0)
 				end
 				aboveBuff = buff;
 			elseif ( numBuffs == 1 ) then
@@ -110,7 +138,7 @@ local function UpdateBuffAnchors()
 					elseif ((mainhand and not offhand and not hand3) or (offhand and not mainhand and not hand3) or (hand3 and not mainhand and not offhand)) and not UnitHasVehicleUI("player") then
 						buff:SetPoint("RIGHT", TempEnchant1, "LEFT", -4, 0)
 					else
-						buff:SetPoint("TOPRIGHT", ZuiMinimap, "TOPLEFT", -8, 0)
+						buff:SetPoint("TOPRIGHT", ZuiPlayerBuffs, "TOPRIGHT", -8, 0)
 					end
 			else
 				buff:SetPoint("RIGHT", previousBuff, "LEFT", -4, 0)
@@ -133,7 +161,7 @@ local function UpdateDebuffAnchors(buttonName, index)
 	_G[buttonName..index.."Panel"]:SetBackdropBorderColor(color.r * 0.6, color.g * 0.6, color.b * 0.6)
 	debuff:ClearAllPoints()
 	if index == 1 then
-		debuff:SetPoint("TOPRIGHT", ZuiMinimap, "TOPLEFT", -8, -120)
+		debuff:SetPoint("TOPRIGHT", ZuiPlayerDebuffs, "TOPRIGHT", -8, 0)
 	else
 		debuff:SetPoint("RIGHT", _G[buttonName..(index-1)], "LEFT", -4, 0)
 	end

@@ -175,7 +175,7 @@ local function Shared(self, unit)
 	
 	if C["raidframes"].raidunitbuffwatch == true then
 		Z.createAuraWatch(self,unit)
-    end
+  end
 	
 	if C["raidframes"].mouseglow == true then
 		self:CreateShadow("Default")

@@ -36,27 +36,35 @@ local function exec(self, enable)
 		end
 	end
 	
-	if Z.isctm and (self == ZuiPlayerBuffs or self == ZuiPlayerDebuffs) then
+	if self == ZuiPlayerBuffs or self == ZuiPlayerDebuffs then
 		if enable then
-			self:SetBackdropColor(unpack(C.media.backdropcolor))
-			self:SetBackdropBorderColor(1,0,0,1)	
+      if Z.isctm then
+        self:SetBackdropColor(unpack(C.media.backdropcolor))
+        self:SetBackdropBorderColor(1,0,0,1)	
+      else
+        self:SetAlpha(1)
+      end
 		else
-			local position = self:GetPoint()			
-			if position:match("TOPLEFT") or position:match("BOTTOMLEFT") or position:match("BOTTOMRIGHT") or position:match("TOPRIGHT") then
-				self:SetAttribute("point", position)
-			end
-			if position:match("LEFT") then
-				self:SetAttribute("xOffset", 36)
-			else
-				self:SetAttribute("xOffset", -36)
-			end
-			if position:match("BOTTOM") then
-				self:SetAttribute("wrapYOffset", 68)
-			else
-				self:SetAttribute("wrapYOffset", -68)
-			end
-			self:SetBackdropColor(0,0,0,0)
-			self:SetBackdropBorderColor(0,0,0,0)
+      if Z.isctm then
+        local position = self:GetPoint()			
+        if position:match("TOPLEFT") or position:match("BOTTOMLEFT") or position:match("BOTTOMRIGHT") or position:match("TOPRIGHT") then
+          self:SetAttribute("point", position)
+        end
+        if position:match("LEFT") then
+          self:SetAttribute("xOffset", 36)
+        else
+          self:SetAttribute("xOffset", -36)
+        end
+        if position:match("BOTTOM") then
+          self:SetAttribute("wrapYOffset", 68)
+        else
+          self:SetAttribute("wrapYOffset", -68)
+        end
+        self:SetBackdropColor(0,0,0,0)
+        self:SetBackdropBorderColor(0,0,0,0)
+      else
+        self:SetAlpha(0)
+      end
 		end
 	end
 	

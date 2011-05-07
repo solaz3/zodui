@@ -110,6 +110,8 @@ if Z.client == "zhTW" then
   L.move_tooltip = "移動指示資訊"
   L.move_minimap = "移動小地圖"
   L.move_shapeshift = "移動變形或圖騰列"
+  L.move_buffs = "移動玩家Buff介面"
+	L.move_debuffs = "移動玩家Debuff介面"
   
   L.disband = "正在解散隊伍."
   

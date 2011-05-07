@@ -47,6 +47,7 @@ C["chat"] = {
   ["classcolortab"] = false,   -- color chat tabs based on class  职业着色标签
   ["whispersound"] = true,    -- play a sound when receiving whisper  密语声音提醒
   ["hidebgoncombat"] = false, -- hide chat background on combat 隐藏聊天背景, warning! may decrese performce
+  ["crazywxxsome"] = false,  -- wxxsome need this, he's totally crazy!
 }
 
 C["unitframes"] = {
@@ -89,7 +90,9 @@ C["unitframes"] = {
 	["assisttankheight"] = 22,				--Height of MainTank/MainAssist frames 高度
 	["playtarbuffperrow"] = 8,				-- buffs/debuffs per row on player/target frames buff/debuff每行的个数
 	["smallbuffperrow"] = 5,				-- debuffs per row on targettarget/focus frames	 TOT上每行buff个数
+  ["buffrows"] = 3,   -- rows of debuffs for the target to display
   ["lowThreshold"] = 30,    -- 魔法过低提醒阀值 %
+  ["showselfname"] = false, -- show own name on player frame
   
 }
 
@@ -154,6 +157,10 @@ C["arena"] = {
 }
 
 C["error"] = {
+  ["enable"] = true,
+}
+
+C["buff"] = {
   ["enable"] = true,
 }
 

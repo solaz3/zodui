@@ -1,4 +1,6 @@
-local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
+local Z, C, L = unpack(select(2, ...)) -- Import: Z - functions, constants, variables; C - config; L - locales
+
+if not C["buff"].enable then return end
 
 local FormatTime = function(s)
 	local day, hour, minute = 86400, 3600, 60
@@ -41,7 +43,7 @@ local function UpdateWeapons(button, slot, active, expiration)
 		
 		button.time = button:CreateFontString(nil, "ARTWORK")
 		button.time:SetPoint("BOTTOM", 0, -12)
-		button.time:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		button.time:SetFont(C.media.pxfont, 12, "MONOCHROMEOUTLINE")
 				
 		button.bg = CreateFrame("Frame", nil, button)
 		button.bg:CreatePanel("Default", 30, 30, "CENTER", button, "CENTER", 0, 0)
@@ -73,11 +75,11 @@ local function UpdateAuras(header, button, weapon)
 
 		button.count = button:CreateFontString(nil, "ARTWORK")
 		button.count:SetPoint("BOTTOMRIGHT", -1, 1)
-		button.count:SetFont(C.media.pixelfont, 14, "MONOCHROMEOUTLINE")
+		button.count:SetFont(C.media.pxfont, 12, "MONOCHROMEOUTLINE")
 
 		button.time = button:CreateFontString(nil, "ARTWORK")
 		button.time:SetPoint("BOTTOM", 0, -12)
-		button.time:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		button.time:SetFont(C.media.pxfont, 12, "MONOCHROMEOUTLINE")
 
 		button:SetScript("OnUpdate", UpdateTime)
 		
@@ -139,7 +141,7 @@ end
 
 local function CreateAuraHeader(filter, ...)
 	local name	
-	if filter == "HELPFUL" then name = "TukuiPlayerBuffs" else name = "TukuiPlayerDebuffs" end
+	if filter == "HELPFUL" then name = "ZuiPlayerBuffs" else name = "ZuiPlayerDebuffs" end
 
 	local header = CreateFrame("Frame", name, UIParent, "SecureAuraHeaderTemplate")
 	header:SetPoint(...)
@@ -149,7 +151,7 @@ local function CreateAuraHeader(filter, ...)
 	
 	header:SetAttribute("unit", "player")
 	header:SetAttribute("sortMethod", "TIME")
-	header:SetAttribute("template", "TukuiAuraTemplate")
+	header:SetAttribute("template", "ZuiAuraTemplate")
 	header:SetAttribute("filter", filter)
 	header:SetAttribute("point", "TOPRIGHT")
 	header:SetAttribute("minWidth", 300)
@@ -162,7 +164,7 @@ local function CreateAuraHeader(filter, ...)
 	-- look for weapons buffs
 	if filter == "HELPFUL" then
 		header:SetAttribute("includeWeapons", 1)
-		header:SetAttribute("weaponTemplate", "TukuiAuraTemplate")
+		header:SetAttribute("weaponTemplate", "ZuiAuraTemplate")
 		header:HookScript("OnUpdate", CheckWeapons)
 	end
 	
@@ -171,7 +173,7 @@ local function CreateAuraHeader(filter, ...)
 	header:SetBackdropBorderColor(0,0,0,0)
 	header:Show()
 	
-	header.text = T.SetFontString(header, C.media.pixelfont2, 14, "MONOCHROMEOUTLINE")
+	header.text = Z.SetFontString(header, C.media.pxfont, 12, "MONOCHROMEOUTLINE")
 	header.text:SetPoint("CENTER")
 	if filter == "HELPFUL" then
 		header.text:SetText(L.move_buffs)
@@ -190,7 +192,7 @@ ScanAuras(CreateAuraHeader("HARMFUL", "TOPRIGHT", -163, -149))
 local start = CreateFrame("Frame")
 start:RegisterEvent("VARIABLES_LOADED")
 start:SetScript("OnEvent", function(self)
-	local frames = {TukuiPlayerBuffs,TukuiPlayerDebuffs}
+	local frames = {ZuiPlayerBuffs,ZuiPlayerDebuffs}
 	for i = 1, getn(frames) do
 		local frame = frames[i]
 		local position = frame:GetPoint()
@@ -203,7 +205,7 @@ start:SetScript("OnEvent", function(self)
 		if position:match("BOTTOM") then
 			frame:SetAttribute("wrapYOffset", 68)
 		end
-		if T.lowversion then
+		if Z.lowversion then
 			frame:SetAttribute("wrapAfter", 8)
 		end
 	end

@@ -119,16 +119,35 @@ if C.chat.background then
   
   -- hide chat bg on combat
   if C["chat"].hidebgoncombat then
+    local function ToggleChatFrame(show)
+      if not C["chat"].crazywxxsome then return end
+      for i = 1, 4 do
+        local frame = _G[format("ChatFrame%s", i)]
+        local tab = _G[format("ChatFrame%sTab", i)]
+        if show then
+          frame:SetAlpha(1)
+          tab:Show()
+        else
+          frame:SetAlpha(0)
+          tab:Hide()
+        end
+      end
+    end
+    
     local function HideChatBackground(self, event)
       if event == "PLAYER_REGEN_ENABLED" then
-        Z.SlideIn(self, 1)
+        UIFrameFadeIn(self, 0.15)
+        ToggleChatFrame(true)
       elseif event == "PLAYER_REGEN_DISABLED" then
-        Z.SlideOut(self)
+        UIFrameFadeOut(self, 0.15)
+        ToggleChatFrame(false)
       elseif event == "PLAYER_ENTERING_WORLD" then
         if InCombatLockdown() then
-          Z.SlideOut(self)
+          UIFrameFadeOut(self, 0.15)
+          ToggleChatFrame(false)
         else
-          Z.SlideIn(self, .2)
+          UIFrameFadeIn(self, 0.15)
+          ToggleChatFrame(true)
         end
       end
     end

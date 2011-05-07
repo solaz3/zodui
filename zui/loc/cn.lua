@@ -112,6 +112,8 @@ if Z.client == "zhCN" then
 	L.move_achievements = "移动成就界面"
 	L.move_roll = "移动Roll界面"
 	L.move_vehicle = "移动栽具座位界面"
+  L.move_buffs = "移动玩家Buff界面"
+	L.move_debuffs = "移动玩家Debuff界面"
   
   L.disband = "正在解散队伍."
  

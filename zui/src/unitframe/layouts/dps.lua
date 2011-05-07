@@ -654,6 +654,15 @@ local function Shared(self, unit)
       altpower.text:SetJustifyH("CENTER")		
       self.AltPowerBar = altpower
 		end
+    
+    if C["unitframes"].showselfname then
+      self:FontString("Name", FONT, FONTSIZE, "THINOUTLINE")
+      self.Name:Point("CENTER", health, "CENTER", 0, 2)
+      self.Name:SetJustifyH("LEFT")
+      self.Name.frequentUpdates = 0.2
+      self.Name:SetShadowColor(0, 0, 0, 0)
+      self:Tag(self.Name, '[Zui:getnamecolor][Zui:namelong] [Zui:diffcolor][level] [shortclassification]')
+    end
   end
 	------------------------------------------------------------------------
 	-- Target
@@ -743,7 +752,7 @@ local function Shared(self, unit)
 			debuffs:SetWidth(TARGET_WIDTH)
 			debuffs.spacing = Z.Scale(SPACING)
 			debuffs.size = ((C["unitframes"].playtarwidth - (debuffs.spacing*(debuffs.num - 1))) / debuffs.num)
-			debuffs:SetHeight(debuffs.size)
+			debuffs:SetHeight(C["unitframes"].buffrows * debuffs.size)
 			debuffs:Point("BOTTOM", buffs, "TOP", 0, SPACING)	
 			debuffs.initialAnchor = 'BOTTOMRIGHT'
 			debuffs["growth-y"] = "UP"
