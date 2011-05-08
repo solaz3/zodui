@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+  <Script file="config\all.lua" />
+  <Script file="config\deathknight.lua" />
+  <Script file="config\druid.lua" />
+  <Script file="config\hunter.lua" />
+  <Script file="config\mage.lua" />
+  <Script file="config\paladin.lua" />
+  <Script file="config\priest.lua" />
+  <Script file="config\rogue.lua" />
+  <Script file="config\shaman.lua" />
+  <Script file="config\warlock.lua" />
+  <Script file="config\warrior.lua" />
+</Ui>

@@ -42,7 +42,7 @@ C["media"] = {
 C["chat"] = {
   ["enable"] = true,
   ["height"] = 97,  -- 聊天框高度
-  ["background"] = true,  -- 是否启用聊天背景
+  ["background"] = false,  -- 是否启用聊天背景
   ["tabcolor"] = {150/255, 150/255, 150/255},  -- color of chat tabs, disabled if classcolor is true  标签颜色
   ["classcolortab"] = false,   -- color chat tabs based on class  职业着色标签
   ["whispersound"] = true,    -- play a sound when receiving whisper  密语声音提醒
@@ -69,7 +69,7 @@ C["unitframes"] = {
 	["casttargetwidth"] = 200,  -- 目标施法条长度
 	["castfocuswidth"] = 200,  -- 焦点施法条长度
   ["castbarcolor"] = C["media"].bordercolor, -- Color of player castbar 施法条颜色
-	["nointerruptcolor"] = { r = 0.78, g = 0.25, g = 0.25, a = 0.5 }, -- Color of target castbar 目标施法条颜色
+	["nointerruptcolor"] = { r = 0.78, g = 0.25, b = 0.25, a = 0.5 }, -- Color of target castbar 目标施法条颜色
 	["healthcolor"] = C["media"].bordercolor,   -- 生命条颜色
   ["mini_powerbar"] = true,  -- 迷你魔法条
   ["charportrait"] = true,   -- 头像
@@ -110,7 +110,7 @@ C["raidframes"] = {
 	["partypets"] = true,					-- enable party pets for the healer layout  队友宠物
 	["disableblizz"] = true,				-- fuck fuck fuckin fuck  禁用BLZ的某些框体(CTM有用)
 	["healthdeficit"] = true,			-- show the health deficit on the raidframes  在raid框体显示掉血量
-	["griddps"] = true,					-- show dps layout in grid style  Grid方式显示DPS布局
+	["griddps"] = false,					-- show dps layout in grid style  Grid方式显示DPS布局
 	["role"] = false,					--display role on raidframe  raid中显示角色
 	["partytarget"]	= false,				--display party members targets (DPS ONLY)  队友目标(dps)
 	["mouseglow"] = true,					--glow the class/reaction color of the unit that you mouseover  鼠标悬停框体时发光

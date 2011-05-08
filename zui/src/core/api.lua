@@ -380,7 +380,7 @@ Z.SetDataText = function(p, obj)
 		obj:SetParent(pvedr)
 		obj:SetHeight(pvedr:GetHeight())
 		obj:SetPoint("CENTER", pvedr, 0, 2)
-  elseif p == 9 then
+  elseif p == 9 and tabright then
     obj:SetParent(tabright)
 		obj:SetHeight(tabright:GetHeight())
 		obj:SetPoint("RIGHT", tabright, -20, 0)

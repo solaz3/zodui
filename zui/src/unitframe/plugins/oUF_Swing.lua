@@ -38,7 +38,7 @@
 --]]
 
 local addon, ns = ...
-local oUF = oUF or ns.oUF
+local oUF = ns.oUF or oUF
 
 local meleeing
 local rangeing

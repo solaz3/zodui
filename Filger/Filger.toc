@@ -6,5 +6,5 @@
 ## Version: 3.0
 ## RequiredDeps: zui
 
-Filger_config_wlk.lua
+inc.xml
 Filger.lua
